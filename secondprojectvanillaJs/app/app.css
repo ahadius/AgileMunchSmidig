@@ -1,0 +1,86 @@
+body {
+margin: 0;
+padding: 0;
+width: 100%;
+height: 100%;
+background-color: beige;
+}
+
+#form-center{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 30%;
+     top: 30%;
+     left: 50%;
+transform: translate(-50%,-50%);
+}
+#input-text{
+border: solid 1px;
+ height: 15vh;
+ border-radius: 5px;
+}
+#form-two {
+width: 100%;
+height: 100vh;
+border-radius: 10px;
+margin-top:  5px;
+
+}
+#form-button{
+background-color: green;
+color: white;
+border-radius: 5px;
+margin-top:  10px; 
+height: 5vh;                          
+}
+ #p{
+   text-align: center;
+  font-size: larger;
+   
+  }
+  #create{
+    border: 2px solid green;
+    right: 5%;
+    margin-top: 10px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+
+
+  }
+.bloggLoad {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-left: 25%;
+margin-right: 25%;
+}
+#blog {
+  margin-top: 15%;
+  border-radius: 30px;
+  padding: 40px;
+
+}
+.div {
+  position: absolute;
+  border-radius: 2px solid;
+  width: 70%;
+  padding: 100px;
+}
+#btn {
+  background-color: rgb(136, 37, 37);
+  color: white;
+  border-radius: 8px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-right: 80%;
+}
+
+
+
+

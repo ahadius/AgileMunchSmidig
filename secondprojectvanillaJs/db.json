@@ -1,0 +1,24 @@
+{
+  "docs": [
+    {
+      "title": "",
+      "body": "",
+      "id": 1
+    },
+    {
+      "title": "",
+      "body": "",
+      "id": 2
+    },
+    {
+      "title": "ew",
+      "body": "Positional alignment */\njustify-content: center;     /* Pack items around the center */\njustify-content: start;      /* Pack items from the start */\njustify-content: end;        /* Pack items from the end */\njustify-content: flex-start; /* Pack flex items from the start */\njustify-content: flex-end;   /* Pack flex items from the end */\njustify-content: left;       /* Pack items from the left */\njustify-content: right;      /* Pack items from the right */",
+      "id": 3
+    },
+    {
+      "title": "news",
+      "body": "Howlgalka ATMIS ayaa ku dhowaaqay in la xirayo xerada Xalane 10-ka illaa 16-ka bishan April, tallaabadaas oo loo arko mid lagu carqaladeynayo dhaarinta xildhibaanada cusub.\n\nXildhibaanada cusub ayaa qorshuhu yahay in lagu dhaariyo Teendhada Afisyoone oo ka tirsan Xalane 14-ka bisha April, balse go’aankan lama filaanka ah ee kasoo baxay ATMIS ayaa shaki weyn gelinaya in dhaartu ay dhici karto.\n\nQoraalka uu howlgalka ATMIS u diray safaaradaha caalamka ee Soomaaliya ayaa lagu yiri “ATMIS waxay howlgal amni ka fulin doontaa saldhigga 10-ka illaa 16-ka April, si loo ogolaado hubin amni oo mideysan, xerada waxay gali doontaa xayiraad buuxda muddada kor ku xisan.” \n\nQoraalka ayaa intaas ku daray in xanibaaddan ay joojin doonto dhammaan shaqooyinkii dhismaha ee ka socday xarunta, la xiri doono dukaamada iyo goobaha ganacsi ee Soomaalida iyo kuwa caalamiga ah, goobaha lagu dhaqo baabuurta iyo maqaayadaha. \n\nATMIS waxay sheegtay in sidoo kale xerada la gelin doono bandow 8:00 pm illaa 5:00 ee subaxnimo, islamarkaana roondo amni gudaha laga sameyn doono  muddadaas oo idil.\n\nATMIS ayaa intaas ku dartay in shaqalaha lagama maarmaanka ah la baari doono loona ogolaan doono inay galaan xarunta. Sidoo kalena howlaha garoonka Aadan Cadde ay sidooda u socon doona.\n\nXayiraaddan ayey sheegtay ATMIS in la qaadi doona islamarkaana howlaha caadiga ah ee Xalane ay dib u billaaban doonaa 17-ka April.\n\nInkasta oo aysan ATMIS sheegin, haddana xayiraaddan ayaa u muuqata inay saameyn doonto qorshaha xildhibaanada lagu dhaarin doono 14-ka April, maadaama xanibaad buuxda lagu soo rogay Xalane, oo ay ku taallo Teendhada Afisyoone ee dhaartu ay ka dhaceyso.\n\nTallaabada ATMIS ayaa imaneysa ayada oo xiisad ay kala dhaxeyso dowladda federaalka kadib markii dalka laga eryey madaxa ATMIS ahna ergeyga gaarka ah ee Midowga Afrika ee Soomaaliya Fransisco Madeira, go’aankaas uu ururka uu ka horyimid. \n\nSi kastaba, dowladda ayaa kadib soo saartay qoraalka Madeira lagala noqday dal-ku-galka, sidoo kalena lagu xiray terminal-ka Movcon ee ay adeegsadaan shisheeyaha ee garoonka Aadan Cadde.",
+      "id": 4
+    }
+  ]
+}
