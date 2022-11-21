@@ -1,0 +1,34 @@
+{
+  "name": "exsamreactandnode",
+  "version": "1.0.0",
+  "description": "exsam2022",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "dev": "npm start --prefex frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohyus15/react2022-23.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohyus15/react2022-23/issues"
+  },
+  "homepage": "https://github.com/mohyus15/react2022-23#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
