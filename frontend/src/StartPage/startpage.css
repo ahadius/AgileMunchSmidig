@@ -244,9 +244,9 @@
     color: black;
     padding: 50px;
     text-align: center;
-    width: 200px; /* adjust as needed */
-    height: auto; /* adjust as needed */
-    font-size: 16px; /* adjust as needed */
+    width: 200px; 
+    height: auto;
+    font-size: 16px; 
     margin: 20px auto;
     margin-right: 50%;
     margin-bottom: 20%;
@@ -259,7 +259,7 @@
     left: 50%;
     width: 0;
     height: 0;
-    border: 20px solid transparent; /* adjust as needed */
+    border: 20px solid transparent; 
     border-top-color: black;
     border-bottom: 0;
     border-right: 0;
