@@ -1,0 +1,269 @@
+.Main {
+    text-align: center;
+    margin-top: 30%;
+    
+    display: flex;
+      justify-content: center;
+     
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      
+    
+  
+  }
+  .container{
+    position: relative;
+  
+    display: flex;
+      justify-content: center;
+      align-items: center;
+    width: 650px;
+    height: 350px;
+    background-color: pink;
+    border-radius: 20px;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    margin: auto;
+  
+  
+  }
+  .button1{
+    cursor: pointer; 
+    position: absolute;
+    background-color: white;
+    margin-bottom: 0%;
+    margin-right:45%;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 20px;
+    width: 180px;
+    height: 120px;
+    background-image: url("brush.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  }
+  
+  .button2{
+    cursor: pointer; 
+    position: absolute;
+    background-color: white;
+    margin-left: 45%;
+    margin-bottom: 0%;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 20px;
+    width: 180px;
+    height: 120px;
+    background-image: url("multiplebrushes.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  }
+  .button1-title{
+    position: absolute;
+  
+   margin-bottom: 35%;
+   margin-right:45%;
+   font-style: italic;
+   font-size: 30px;
+   font-weight: 1000;
+  
+  
+  
+  }
+  .button2-title{
+    position: absolute;
+  
+    margin-bottom: 35%;
+    margin-left:45%;
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 1000;
+   
+   
+   
+   }
+  
+  
+  .container.clicked .button1,
+  .container.clicked .button2,
+  .container.clicked .button1-title,
+  .container.clicked .button2-title {
+    animation: hide 2s forwards;
+  }
+  
+  @keyframes hide {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  .container.clicked .button1-title {
+    animation-name: moveTitle;
+  }
+  
+  @keyframes moveTitle {
+    to {
+      transform: translateX(60%);
+    }
+  }
+  
+  .new-button1{
+    font-family: Arial, sans-serif;  
+    font-size: 20px;  
+    text-align: center;  
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold; 
+    transition-duration: 0.4s; 
+    cursor: pointer; 
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: white;
+    margin-left: 65%;
+    margin-bottom: 0%;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 20px;
+    width: 180px;
+    height: 120px;
+  }
+  .new-button2{
+    font-family: Arial, sans-serif;  
+    font-size: 20px;  
+    text-align: center;  
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold; 
+    transition-duration: 0.4s; 
+    cursor: pointer; 
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: white;
+    margin-left: 0%;
+    margin-bottom: 0%;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 20px;
+    width: 180px;
+    height: 120px;
+  }
+  .new-button3 {
+    font-family: Arial, sans-serif;  
+    font-size: 20px;  
+    text-align: center;  
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;  
+    transition-duration: 0.4s; 
+    cursor: pointer; 
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: white;
+    margin-right: 65%;
+    margin-bottom: 0%;
+    border-color: black;
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 20px;
+    width: 180px;
+    height: 120px;
+    
+  }
+  
+  .container.clicked .new-button1,
+  .container.clicked .new-button2,
+  .container.clicked .new-button3 {
+    animation: show 2s forwards;
+  }
+  
+  @keyframes show {
+    to {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+  }
+  .tooltip {
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 14px;
+    z-index: 100;
+  }
+  
+  .start-button {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .selectedGameMode {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin-top:30%;
+    border-color: black;
+    border-style: solid;
+  
+  }
+  .selectedGameMode {
+    position: absolute;
+    background: white;
+    border-radius: 10px;
+    color: black;
+    padding: 50px;
+    text-align: center;
+    width: 200px; /* adjust as needed */
+    height: auto; /* adjust as needed */
+    font-size: 16px; /* adjust as needed */
+    margin: 20px auto;
+    margin-right: 50%;
+    margin-bottom: 20%;
+  }
+  
+  .selectedGameMode:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent; /* adjust as needed */
+    border-top-color: black;
+    border-bottom: 0;
+    border-right: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+  }
+  
