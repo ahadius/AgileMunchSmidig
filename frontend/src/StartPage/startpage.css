@@ -244,26 +244,12 @@
     color: black;
     padding: 50px;
     text-align: center;
-    width: 200px; 
-    height: auto;
-    font-size: 16px; 
+    width: 200px; /* adjust as needed */
+    height: 100px; /* adjust as needed */
+    font-size: 16px; /* adjust as needed */
     margin: 20px auto;
-    margin-right: 50%;
-    margin-bottom: 20%;
+    margin-right: 62%;
+    margin-bottom: 0%;
   }
   
-  .selectedGameMode:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent; 
-    border-top-color: black;
-    border-bottom: 0;
-    border-right: 0;
-    margin-left: -10px;
-    margin-bottom: -20px;
-  }
   
