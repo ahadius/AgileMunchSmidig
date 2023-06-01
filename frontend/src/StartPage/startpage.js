@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import '../App.css';
-
 function StartingPage() {
   const [clicked, setClicked] = useState(false);
   const [startVisible, setStartVisible] = useState(false);
   const [gameMode, setGameMode] = useState("");
-
   const handleClick = (mode = true) => {
     setClicked(mode);
     if(typeof mode === "string") {
@@ -15,13 +13,11 @@ function StartingPage() {
       setStartVisible(false); 
     }
   }
-
   const handleBack = () => {
     setClicked(false);
     setStartVisible(false);
     setGameMode("");
   }
-
   return (
     <div className="Main">
       <div className={clicked ? "container clicked" : "container"}>
@@ -29,7 +25,6 @@ function StartingPage() {
         <button className="button1" onClick={handleClick}></button>
         <h3 className="button2-title">MULTIPLAYER</h3>
         <button className="button2"></button>
-
         {clicked && (
           <>
             <button className="new-button1" onClick={() => handleClick("transparent gamemode, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ")}>
@@ -52,5 +47,4 @@ function StartingPage() {
     </div>
   );
 }
-
 export default StartingPage;

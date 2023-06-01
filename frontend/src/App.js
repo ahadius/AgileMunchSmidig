@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
 import DrawingArea from "./BoardAssets/board.js";
-import Startpage from './StartPage/startpage.js';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import StartingPage from './StartPage/startpage.js';
+import { BrowserRouter as Router, Route, BrowserRouter } from 'react-router-dom';
+
 
 
 
 function App() {
     return (
+        <BrowserRouter>
         <Router>
           <div className="App">
             <div className="nav-container">
@@ -22,12 +24,13 @@ function App() {
               </a>
             </div>
     
-            <Route exact path="/" component={Startpage} />
+            <Route path="/" component={StartingPage} />
             <Route path="/drawing" component={DrawingArea} />
     
             <div className="whiteBox"></div>
           </div>
         </Router>
+        </BrowserRouter>
       );
 }
 
