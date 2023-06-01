@@ -1,33 +1,34 @@
 import React from 'react';
 import './App.css';
 import DrawingArea from "./BoardAssets/board.js";
-
-//import Startpage from './StartPage/startpage.js';
-//import Board from './BoardAssets/board.js';
-
-
-/*
-<Navbar />
-				<Routes>
-					<Route path="/" element={<Startpage />} />
-
-					<Route path="/dashbort" element={<Board/>} />
+import Startpage from './StartPage/startpage.js';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
-				</Routes>
-*/
+
 function App() {
     return (
-        <div className="App">
+        <Router>
+          <div className="App">
             <div className="nav-container">
-                <a href="/" className="nav-title">MUNCH</a>
-                <a href="https://www.munchmuseet.no/en/buy-tickets/" className="nav-link">Tickets</a>
-                <a href="https://www.munchmuseet.no/en/visit-us/" className="nav-link">Visit US</a>
+              <a href="/" className="nav-title">
+                MUNCH
+              </a>
+              <a href="https://www.munchmuseet.no/en/buy-tickets/" className="nav-link">
+                Tickets
+              </a>
+              <a href="https://www.munchmuseet.no/en/visit-us/" className="nav-link">
+                Visit US
+              </a>
             </div>
-            <DrawingArea/>
+    
+            <Route exact path="/" component={Startpage} />
+            <Route path="/drawing" component={DrawingArea} />
+    
             <div className="whiteBox"></div>
-        </div>
-    );
+          </div>
+        </Router>
+      );
 }
 
 export default App;

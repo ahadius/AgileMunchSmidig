@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './App.css';
+import '../App.css';
 
-function App() {
+function StartingPage() {
   const [clicked, setClicked] = useState(false);
   const [startVisible, setStartVisible] = useState(false);
   const [gameMode, setGameMode] = useState("");
@@ -53,4 +53,4 @@ function App() {
   );
 }
 
-export default App;
+export default StartingPage;
