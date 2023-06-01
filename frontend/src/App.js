@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './munch_logo.png';
 import './App.css';
 import DrawingArea from "./BoardAssets/board.js";
 

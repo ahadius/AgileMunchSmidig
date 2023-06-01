@@ -1,4 +1,3 @@
-
 import React, {useRef, useEffect, useState} from 'react';
 import "./board.css";
 
@@ -154,9 +153,9 @@ const DrawingArea = () => {
 
 
 
-export default {
-    
-    DrawingArea
-};
+export default DrawingArea
+
+
+
 
 
