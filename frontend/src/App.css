@@ -1,29 +1,82 @@
-body{
-  background-color: white;
-}
-.whiteBox{
-  background: white;
-  margin: auto;
-  width: 1350px;
-  height: 600px;
-  padding: 10px;
+@font-face {
+    font-display: swap;
+    font-family: girott-backslant;
+    font-weight: 700;
+    src: url(munch.woff2) format("woff2")
 }
 
-.munch-logo{
-  width: 100px;
-  height: 50px;
-  position: absolute;
-  top: 25px;
-  left: 16px;
-  font-size: 18px;
+body {
+    background-color: white;
+}
+
+.whiteBox {
+    background: white;
+    margin: auto;
+    width: 1350px;
+    height: 600px;
+    padding: 10px;
+}
+
+.munch-logo {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 25px;
+    left: 16px;
+    font-size: 18px;
+}
+
+.munchHeader {
+    font-family: girott-backslant, sans-serif;
+    color: #fe390f;
 }
 
 .h1 {
-  color: white;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 40px;
-  top: 8px;
-  text-align: center;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    top: 8px;
+    text-align: center;
 }
 
 
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5em .75em;
+    background-color: #333333;
+    min-height: 100px;
+}
+
+.nav-link, .nav-title {
+    font-size: 64px;
+    letter-spacing: -.65px;
+    line-height: 32px;
+    text-decoration: none !important;
+}
+
+.nav-title {
+    font-family: girott-backslant, sans-serif;
+    color: #fe390f;
+    transition: 0.5s ease-out;
+    margin-right: auto;
+    margin-left: 1em;
+}
+
+.nav-title:hover, .nav-title:focus {
+    color: #fff;
+}
+
+.nav-link {
+    color: #fff;
+    transition: 0.5s ease-out;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #fe390f;
+}

@@ -4,16 +4,17 @@ import './App.css';
 import DrawingArea from "./BoardAssets/board.js";
 
 function App() {
-  return (
-    <div className="App">
-      <h1 className="h1">kunst spill</h1>
-      <header className="munch-header">
-        <img src={logo} className="munch-logo" alt="logo" />
-      </header>
-      <DrawingArea />
-      <div className="whiteBox"></div>
-    </div>
-  );
+    return (
+        <div className="App">
+            <div className="nav-container">
+                <a href="/" className="nav-title">MUNCH</a>
+                <a href="https://www.munchmuseet.no/en/buy-tickets/" className="nav-link">Tickets</a>
+                <a href="https://www.munchmuseet.no/en/visit-us/" className="nav-link">Visit US</a>
+            </div>
+            <DrawingArea/>
+            <div className="whiteBox"></div>
+        </div>
+    );
 }
 
 export default App;
