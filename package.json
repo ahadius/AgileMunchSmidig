@@ -1,0 +1,30 @@
+{
+  "name": "agilemunchsmidig-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "install-backend": "npm install --prefix backend",
+    "install-frontend": "npm install --prefix frontend",
+    "install": "npm run install-backend && npm run install-frontend",
+    "backend": "npm run watch --prefix backend",
+    "frontend": "npm start --prefix frontend",
+    "dev": "npm run backend & npm run frontend",
+    "deploy": "npm run build --prefix frontend && npm start --prefix backend",
+    "deploy-cluster": "npm run build --prefix frontend && npm run cluster --prefix backend",
+    "test": "npm test --prefix backend && npm test --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahadius/AgileMunchSmidig.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahadius/AgileMunchSmidig/issues"
+  },
+  "homepage": "https://github.com/ahadius/AgileMunchSmidig#readme",
+  "devDependencies": {
+    "dotenv": "^16.1.3"
+  }
+}

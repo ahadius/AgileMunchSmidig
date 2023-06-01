@@ -3,6 +3,20 @@ import logo from './munch_logo.png';
 import './App.css';
 import DrawingArea from "./BoardAssets/board.js";
 
+//import Startpage from './StartPage/startpage.js';
+//import Board from './BoardAssets/board.js';
+
+
+/*
+<Navbar />
+				<Routes>
+					<Route path="/" element={<Startpage />} />
+
+					<Route path="/dashbort" element={<Board/>} />
+
+
+				</Routes>
+*/
 function App() {
     return (
         <div className="App">
