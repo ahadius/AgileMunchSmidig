@@ -1,5 +1,7 @@
+
 import React, {useRef, useEffect, useState} from 'react';
 import "./board.css";
+
 
 const DrawingArea = () => {
     const canvasRef = useRef(null);
@@ -149,4 +151,12 @@ const DrawingArea = () => {
     );
 };
 
-export default DrawingArea;
+
+
+
+export default {
+    
+    DrawingArea
+};
+
+
