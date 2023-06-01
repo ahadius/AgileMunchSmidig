@@ -1,0 +1,39 @@
+.canvas-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    margin: 32px;
+}
+
+.my-canvas {
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+}
+
+.canvas-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 16px;
+    gap: 8px;
+}
+
+.color-palette {
+    display: flex;
+    gap: 8px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.selected {
+    border: 2px solid black;
+}

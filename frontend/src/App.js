@@ -1,5 +1,7 @@
+import React from 'react';
 import logo from './munch_logo.png';
 import './App.css';
+import DrawingArea from "./BoardAssets/board.js";
 
 function App() {
   return (
@@ -8,9 +10,9 @@ function App() {
       <header className="munch-header">
         <img src={logo} className="munch-logo" alt="logo" />
       </header>
+      <DrawingArea />
       <div className="whiteBox"></div>
     </div>
-    
   );
 }
 
