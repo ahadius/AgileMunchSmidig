@@ -8,14 +8,14 @@
     color: white;
 }
 body {
-    background-color: rgb(237, 230, 230);
+    background-color: rgb(232, 222, 222);
     /*Biston*/
 }
 
 .whiteBox {
     background: white;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .munch-logo {
