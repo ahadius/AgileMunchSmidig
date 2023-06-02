@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import '../App.css';
+import './startpage.css';
 function StartingPage() {
 	const navigate = useNavigate();
 	const [clicked, setClicked] = useState(false);

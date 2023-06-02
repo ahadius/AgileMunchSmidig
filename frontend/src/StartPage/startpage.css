@@ -1,16 +1,7 @@
 .Main {
     text-align: center;
-    margin-top: 30%;
-    
-    display: flex;
-      justify-content: center;
-     
-      align-items: center;
       height: 100vh;
-      margin: 0;
       
-    
-  
   }
   .container{
     position: relative;
@@ -232,24 +223,22 @@
     font-size: 20px;
     color: white;
     text-align: center;
-    margin-top:30%;
+    margin-top:10%;
     border-color: black;
     border-style: solid;
   
   }
   .selectedGameMode {
     position: absolute;
-    background: white;
+    background: rgb(236, 228, 228);
     border-radius: 10px;
     color: black;
     padding: 50px;
     text-align: center;
     width: 10%; 
-    height: 30%; 
     font-size: 16px; 
-    margin: auto;
     margin-right: 62%;
-    margin-bottom: 0%;
+    margin-bottom: 10%;
   }
   
   .back-button {

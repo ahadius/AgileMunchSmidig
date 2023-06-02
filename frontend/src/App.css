@@ -4,17 +4,18 @@
     font-weight: 700;
     src: url(munch.woff2) format("woff2")
 }
-
+.Munch {
+    color: white;
+}
 body {
-    background-color: white;
+    background-color: rgb(237, 230, 230);
+    /*Biston*/
 }
 
 .whiteBox {
     background: white;
     margin: auto;
-    width: 1350px;
-    height: 600px;
-    padding: 10px;
+    margin-top: 50px;
 }
 
 .munch-logo {
@@ -47,7 +48,7 @@ body {
     align-items: center;
     justify-content: space-around;
     padding: 0.5em .75em;
-    background-color: #333333;
+    background-color: #170404;
     min-height: 100px;
 }
 
