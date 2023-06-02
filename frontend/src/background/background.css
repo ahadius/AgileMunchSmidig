@@ -1,0 +1,72 @@
+
+.App{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .App img {
+    width: 25%;
+    height: 25%;
+    object-fit: cover;
+  }
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: larger;
+    font: optional;
+    font-style: italic;
+    font-variant-numeric: lining-nums;
+    color:rgb(243, 7, 7);
+    padding: 10px;
+    font-size: 50px;
+    text-align: center;
+    z-index: 1;
+    animation: slide 80s ease-in-out infinite;
+    
+    border-radius: 50px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    75% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+        
+  .animated-image {
+    opacity: 0;
+    transform: translateX(-100%); 
+    transform: rotate(100%);             
+    transition: opacity 5s ease-out, transform 5s ease-out;
+    animation: slide-images 10s infinite linear;
+  }
+  
+  
+  .animated-image.animate {
+    opacity: 2;
+    transform: translateX(0);
+  }
+  
+  
+  
+  

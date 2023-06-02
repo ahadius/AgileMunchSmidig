@@ -8,6 +8,7 @@ const Navbar = () => {
 		<div>
 			<div className="App">
 				<div className="nav-container">
+		
 					<Link to="/" className="Munch">
 						MUNCH
 						<Link to="./board"></Link>
