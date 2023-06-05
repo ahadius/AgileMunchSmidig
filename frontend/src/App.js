@@ -6,6 +6,8 @@ import Navbar from './navbar/navbar.js';
 import DrawingArea from './BoardAssets/board.js';
 //import Background from './background/background';
 import Multi from '../src/multi/multi.js';
+import Sigup from './form/signup.js';
+import Login from './form/login.js';
 
 function App() {
 	return (
@@ -13,6 +15,8 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Startpage />} />
+				<Route exact path="/signup" element={<Sigup />} />
+				<Route exact path="/login" element={<Login />} />
 				<Route
 					exact
 					path="/board"

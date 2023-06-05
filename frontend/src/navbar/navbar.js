@@ -12,6 +12,8 @@ const Navbar = () => {
 						<Link to="./board"></Link>
 					</Link>
 					<Link to="./multi">multiplayers</Link>
+					<Link to="./signup">signup</Link>
+					<Link to="./login">login</Link>
 				</div>
 
 				<div className="whiteBox"></div>
