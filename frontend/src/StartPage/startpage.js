@@ -26,6 +26,9 @@ function StartingPage() {
 		setStartVisible(false);
 		setGameMode('');
 	};
+	const changeToMulty = () => {
+		navigate('./multi');
+	};
 	return (
 		<div className="Main">
 			<div
@@ -37,7 +40,9 @@ function StartingPage() {
 					className="button1"
 					onClick={handleClick}></button>
 				<h3 className="button2-title">MULTIPLAYER</h3>
-				<button className="button2"></button>
+				<button
+					onClick={changeToMulty}
+					className="button2"></button>
 				{clicked && (
 					<>
 						<button
