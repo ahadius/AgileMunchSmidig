@@ -7,10 +7,23 @@
     margin: 32px;
 }
 
+.canvas-container.pencil-cursor {
+    cursor: url("pencil-16x16.png") 8 8, auto;
+}
+
+.canvas-container.bucket-cursor {
+    cursor: url("bucket-16x16.png") 8 8, auto;
+}
+
+.canvas-container.eraser-cursor {
+    cursor: url("eraser-16x16.png") 8 8, auto;
+}
+
 .my-canvas {
     border: 1px solid black;
     height: 100%;
     width: 100%;
+    background-color: #ffffff;
 }
 
 .canvas-buttons {

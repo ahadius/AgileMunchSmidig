@@ -6,8 +6,12 @@ const DrawingArea = () => {
     const canvasRef = useRef(null);
     const linesRef = useRef([]);
     const isDrawingRef = useRef(false);
-    const [selectedColor, setSelectedColor] = useState('#000000'); // Default color is black
+    const [selectedColor, setSelectedColor] = useState('#000000'); // default color is black
+    const [tool, setTool] = useState('pencil'); // default tool is pencil
     const selectedColorRef = useRef(selectedColor);
+    const toolRef = useRef(tool);
+    const eraserColor = '#FFFFFF'; // The color for the eraser, assuming the canvas background is white
+    const [previousColor, setPreviousColor] = useState(''); // store previous colour when switching to eraser
 
 
     const handleColorChange = (color) => {
@@ -49,6 +53,21 @@ const DrawingArea = () => {
     };
 
 
+    // Update the tool in the state instead of directly modifying it
+    const handleToolChange = (newTool) => {
+        if (toolRef.current === 'eraser') {
+            setSelectedColor(previousColor);
+            selectedColorRef.current = previousColor;
+        }
+        toolRef.current = newTool;
+        setTool(newTool);
+        // If the tool is an eraser, set the color to the eraser color
+        if (newTool === 'eraser') {
+            setPreviousColor(selectedColorRef.current);
+            setSelectedColor(eraserColor);
+            selectedColorRef.current = eraserColor;
+        }
+    };
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
@@ -59,13 +78,18 @@ const DrawingArea = () => {
         canvas.height = height;
         let currentLine = [];
 
+        // Update the tool in the state when it changes
         const startDrawing = (e) => {
-            isDrawingRef.current = true;
             const rect = canvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            currentLine = [{x, y}];
+            if (toolRef.current === 'bucket') {
+            } else {
+                isDrawingRef.current = true;
+                currentLine = [{x, y}];
+            }
         };
+
 
         const draw = (e) => {
             if (!isDrawingRef.current) return;
@@ -131,7 +155,8 @@ const DrawingArea = () => {
     }, []);
 
     return (
-        <div className="canvas-container">
+        <div
+            className={`canvas-container ${tool === 'pencil' ? 'pencil-cursor' : tool === 'bucket' ? 'bucket-cursor' : 'eraser-cursor'}`}>
             <canvas
                 ref={canvasRef}
                 className="my-canvas"
@@ -144,13 +169,14 @@ const DrawingArea = () => {
                 />
                 <button onClick={undo}>Undo</button>
                 <button onClick={clearCanvas}>Clear Canvas</button>
+                <button onClick={() => handleToolChange('pencil')}>Pencil</button>
+                <button onClick={() => handleToolChange('bucket')}>Bucket</button>
+                <button onClick={() => handleToolChange('eraser')}>Eraser</button>
             </div>
         </div>
 
     );
 };
-
-
 
 
 export default DrawingArea
