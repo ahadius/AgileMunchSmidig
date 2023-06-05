@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 //manger roles
 const productRouter = require('./routers/productRouter.js');
+const userRouter = require('./routers/userRouter.js');
 // for users site
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(
 );
 app.use(morgan('combined'));
 //app.use('/products', productRouter);
+//app.use('/users', userRouter);
 
 app.get('/*', (req, res) => {
 	res.sendFile(
