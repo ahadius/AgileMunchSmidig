@@ -1,5 +1,4 @@
 import React from 'react';
-import DrawingArea from '../BoardAssets/board.js';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
@@ -12,6 +11,7 @@ const Navbar = () => {
 						MUNCH
 						<Link to="./board"></Link>
 					</Link>
+					<Link to="./multi">multiplayers</Link>
 				</div>
 
 				<div className="whiteBox"></div>
