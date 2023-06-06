@@ -4,11 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
-    "server": "node server/server.js",
-    "start": "node server/server.js",
-    "client": "npm start --prefix client",
-    "room": "concurrently \"npm run server\" \"npm run client\"",
     "install-backend": "npm install --prefix backend",
     "install-frontend": "npm install --prefix frontend",
     "install": "npm run install-backend && npm run install-frontend",
