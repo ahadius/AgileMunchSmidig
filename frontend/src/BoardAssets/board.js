@@ -113,9 +113,20 @@ const DrawingBoard = ({ username }) => {
         canvas.addEventListener('mouseup', endDrawing);
         canvas.addEventListener('mousemove', draw);
         //canvas.addEventListener('click', fillArea);
-        canvas.addEventListener('touchstart', startDrawing);
-        canvas.addEventListener('touchend', endDrawing);
-        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            startDrawing(e.touches[0]);
+        }, false);
+        canvas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            endDrawing();
+        }, false);
+        canvas.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            requestAnimationFrame(() => {
+                draw(e.touches[0]);
+            });
+        }, false);
 
         return () => {
             window.removeEventListener('resize', resizeContext);
@@ -196,7 +207,7 @@ const DrawingBoard = ({ username }) => {
                     {colorPalette.map((color, i) => (
                         <button
                             key={i}
-                            style={{ backgroundColor: color, width: '40px', height: '25px' }}
+                            style={{ backgroundColor: color, width: '35px', height: '25px' }}
                             onClick={() => setColor(color)}
                         />
                     ))}
