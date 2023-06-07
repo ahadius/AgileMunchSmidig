@@ -196,7 +196,7 @@ const DrawingBoard = ({ username }) => {
                     {colorPalette.map((color, i) => (
                         <button
                             key={i}
-                            style={{ backgroundColor: color, width: '40px', height: '25px' }}
+                            style={{ backgroundColor: color, width: '35px', height: '25px' }}
                             onClick={() => setColor(color)}
                         />
                     ))}
