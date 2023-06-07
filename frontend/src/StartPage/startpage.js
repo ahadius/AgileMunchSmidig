@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './startpage.css';
+import { Link } from 'react-router-dom';
+
 function StartingPage() {
 	const navigate = useNavigate();
 	const [clicked, setClicked] = useState(false);
@@ -27,8 +29,10 @@ function StartingPage() {
 		setGameMode('');
 	};
 	const changeToMulty = () => {
-		navigate('./multi');
+		navigate('./room');
 	};
+	
+
 	return (
 		<div className="Main">
 			<div
@@ -36,13 +40,17 @@ function StartingPage() {
 					clicked ? 'container clicked' : 'container'
 				}>
 				<h3 className="button1-title">SINGLEPLAYER</h3>
+				
 				<button
 					className="button1"
 					onClick={handleClick}></button>
-				<h3 className="button2-title">MULTIPLAYER</h3>
+				
+					<h3 className="button2-title">MULTIPLAYER</h3>
+					
 				<button
 					onClick={changeToMulty}
 					className="button2"></button>
+					
 				{clicked && (
 					<>
 						<button
