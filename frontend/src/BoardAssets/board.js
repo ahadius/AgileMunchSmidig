@@ -23,16 +23,34 @@ const DrawingBoard = ({ username }) => {
     ];
     //const [filling, setFilling] = useState(false);
 
+    
+
+
+
+
+
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const context = canvas.getContext('2d');
 
+        const resizeContext = () => {
+            let temp = context.getImageData(0, 0, canvas.width, canvas.height);
+
+            context.canvas.width = canvas.clientWidth;
+            context.canvas.height = canvas.clientHeight;
+
+            context.putImageData(temp, 0, 0);
+        }
+        resizeContext();
+        window.addEventListener('resize', resizeContext);
+
         const draw = (e) => {
-            if (!drawing) return;
             const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        const x = ('clientX' in e ? e.clientX : e.touches[0].clientX) - rect.left;
+        const y = ('clientY' in e ? e.clientY : e.touches[0].clientY) - rect.top;
+            if (!drawing) return;
+            
             context.lineWidth = size;
             context.strokeStyle = color;
     
@@ -64,10 +82,10 @@ const DrawingBoard = ({ username }) => {
         }
     
 
-        const startDrawing = (e) => {
+        const startDrawing = (e) => {  // funksjoner for å bevege både musset og touch bevegelser
             const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x = ('clientX' in e ? e.clientX : e.touches[0].clientX) - rect.left;
+            const y = ('clientY' in e ? e.clientY : e.touches[0].clientY) - rect.top;
 
             if (tool === 'line') {
                 setLineStart({
@@ -95,12 +113,21 @@ const DrawingBoard = ({ username }) => {
         canvas.addEventListener('mouseup', endDrawing);
         canvas.addEventListener('mousemove', draw);
         //canvas.addEventListener('click', fillArea);
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchend', endDrawing);
+        canvas.addEventListener('touchmove', draw);
 
         return () => {
+            window.removeEventListener('resize', resizeContext);
+
             canvas.removeEventListener('mousedown', startDrawing);
             canvas.removeEventListener('mouseup', endDrawing);
             canvas.removeEventListener('mousemove', draw);
             //canvas.removeEventListener('click', fillArea);
+            canvas.removeEventListener('touchstart', startDrawing);
+            canvas.removeEventListener('touchend', endDrawing);
+            canvas.removeEventListener('touchmove', draw);
+
 
         };
     }, [drawing, color, size, tool, brushType]);
@@ -122,10 +149,11 @@ const DrawingBoard = ({ username }) => {
             image.src = history[currentIndex - 1];
             image.onload = () => {
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                context.drawImage(image, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
             };
         }
     }
+    
 
     const clearCanvas = () => {
         const canvas = canvasRef.current;
@@ -136,47 +164,23 @@ const DrawingBoard = ({ username }) => {
     }
 
 
-    /*const fillCanvas = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        context.fillStyle = color;
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        saveToHistory();
-      };*/
-  
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 800px 1fr', gridTemplateRows: 'auto 600px', gap: '2rem', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <div style={{ gridColumn: '1 / span 3', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: 'auto auto auto auto auto', gap: '1rem', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
                 <label>
-                    Fargepalett:
-                    {colorPalette.map((color, i) => (
-                        <button
-                            key={i}
-                            style={{ backgroundColor: color, width: '20px', height: '20px' }}
-                            onClick={() => setColor(color)}
-                        />
-                    ))}
-                </label>
-
-                <label>
-                Børstetype:
-                <select value={brushType} onChange={(e) => setBrushType(e.target.value)}>
-                    <option value="flat">Flat</option>
-                    <option value="round">Round</option>
-                    <option value="textured">Textured</option>
-                </select>
-            </label>  
-
-                <label>
-                    Penselfarge:
-                    <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-                </label>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '1rem' }}>
+                    Børstetype:
+                    <select value={brushType} onChange={(e) => setBrushType(e.target.value)}>
+                        <option value="flat">Flat</option>
+                        <option value="round">Round</option>
+                        <option value="textured">Textured</option>
+                    </select>
+                </label>  
+    
                 <label>
                     Penselstørrelse:
                     <input type="number" min="1" max="50" value={size} onChange={(e) => setSize(e.target.value)} />
                 </label>
+    
                 <label>
                     Tegneverktøy:
                     <select value={tool} onChange={(e) => setTool(e.target.value)}>
@@ -184,13 +188,38 @@ const DrawingBoard = ({ username }) => {
                         <option value="line">Rett linje</option>
                     </select>
                 </label>
+            </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+                <label>
+                    Fargepalett:
+                    {colorPalette.map((color, i) => (
+                        <button
+                            key={i}
+                            style={{ backgroundColor: color, width: '40px', height: '25px' }}
+                            onClick={() => setColor(color)}
+                        />
+                    ))}
+                </label>
+    
+                <label>
+                    Penselfarge:
+                    <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
+                </label>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
                 <button onClick={undo}>Angre</button>
                 <button onClick={clearCanvas}>Rens Canvas</button>
+            </div>
+            <canvas ref={canvasRef} style={{ border: '1px solid black', margin: '0 auto', width: '80vw', height: '80vh' }} />
 
-            </div>
-            <canvas ref={canvasRef} width="800" height="600" style={{ border: '1px solid black', gridColumn: '2' }} />
-            </div>
-    );
+        </div>
+    );   
+    
+  
+    
 }
 
 export default DrawingBoard;
+
+
