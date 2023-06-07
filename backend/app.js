@@ -2,10 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
+
 //manger roles
 const productRouter = require('./routers/productRouter.js');
+const ratingRouter = require('./routers/RatingRouter.js');
 const userRouter = require('./routers/userRouter.js');
-// for users site
+const loginRouter = require('./routers/loginRouter.js');
 
 const app = express();
 app.use(cors());
@@ -20,7 +22,9 @@ app.use(
 );
 app.use(morgan('combined'));
 //app.use('/products', productRouter);
-//app.use('/users', userRouter);
+//app.use('/rating', ratingRouter);
+app.use('/users', userRouter);
+app.use('/login', loginRouter);
 
 app.get('/*', (req, res) => {
 	res.sendFile(
