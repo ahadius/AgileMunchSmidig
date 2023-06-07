@@ -29,10 +29,10 @@ export default Navbar;*/
 import React from 'react';
 //import { Link } from 'react-router-dom';
 import '../App.css';
-import { Navbar, Nav,NavDropdown,} from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-		/*<div>
+/*<div>
 			<Card>hello</Card>
 			<div className="App">
 				<div className="nav-container">
@@ -51,7 +51,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
 	return (
-		<Navbar style={{height: '50px'}} collapseOnSelect expand="sm" bg="dark" variant="dark" className="mb-3">
+		<Navbar style={{height: '100px'}} collapseOnSelect expand="sm" bg="dark" variant="dark" className="mb-3">
             <Navbar.Brand style={{fontFamily: "impact", color:"red", fontSize:50,}} as={Link} to="/" className="mx-3">MUNCH</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

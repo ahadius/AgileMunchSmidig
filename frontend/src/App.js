@@ -8,6 +8,7 @@ import DrawingArea from './BoardAssets/board.js';
 import Multi from '../src/multi/multi.js';
 import Sigup from './form/signup.js';
 import Login from './form/login.js';
+import Result from './DrewingStore/result.js';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Startpage />} />
 				<Route exact path="/signup" element={<Sigup />} />
+				<Route exact path="/result" element={<Result />} />
 				<Route exact path="/login" element={<Login />} />
 				<Route
 					exact
