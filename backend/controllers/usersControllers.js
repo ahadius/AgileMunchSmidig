@@ -1,22 +1,30 @@
-const User = require('../models/users.js');
+const User = require('../models/usersModel.js');
+const bcrypt = require('bcryptjs');
 
-const saveUser = async (req, res) => {
-	const { image } = req.body;
+const SigUpNewUser = async (req, res) => {
+	const { username, password, telefon } = req.body;
 	try {
-		const newUser = await User.create({
-			image,
+		if (!username || !password || !telefon) {
+			return res
+				.status(404)
+				.json({ error: 'All fields must be filled' });
+		}
+
+		const salt = await bcrypt.genSalt(10);
+		const hash = await bcrypt.hash(password, salt);
+
+		await User.create({
+			username,
+			password: hash,
+			telefon,
 		});
-		res.status(200).json(newUser);
+
+		res.status(200);
 	} catch (error) {
-		res.status(400).json({ error: error.message });
+		res.status(300).json({ error: error.message });
 	}
 };
 
-const getUser = async (req, res) => {
-	const json = await User.find({}).sort({});
-	res.status(200).json(json);
-};
 module.exports = {
-	getUser,
-	saveUser,
+	SigUpNewUser,
 };

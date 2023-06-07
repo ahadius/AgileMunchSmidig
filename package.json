@@ -4,11 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+<<<<<<< HEAD
     "client-install": "npm install --prefix client",
     "server": "node backend/roomserver/roomserver.js",
     "start": "node backend/roomserver/roomserver.js",
     "client": "npm start --prefix client",
     "room": "concurrently \"npm run server\" \"npm run client\"",
+=======
+>>>>>>> 5dd52fdd1e1bf9f13ccd937836c40e12e452b07f
     "install-backend": "npm install --prefix backend",
     "install-frontend": "npm install --prefix frontend",
     "install": "npm run install-backend && npm run install-frontend",

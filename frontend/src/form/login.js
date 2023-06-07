@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { userLogin } from '../api/api.js';
 import '../App.css';
 
 const Login = () => {
+	const [res, setRes] = useState([]);
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
+	const navigate = useNavigate();
 
 	const onchangeUsername = e => {
 		const result1 = e.target.value;
@@ -16,13 +20,38 @@ const Login = () => {
 		e.preventDefault();
 	};
 
-	const setToDb = {
-		username,
-		password,
-	};
-	const onsubmitHandel = e => {
+	useEffect(() => {
+		userLogin()
+			.then(data => {
+				return data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, [res]);
+
+	const onsubmitHandel = async e => {
 		e.preventDefault();
-		console.log(setToDb);
+		const setToDb = {
+			username,
+			password,
+		};
+
+		let users = await userLogin(setToDb);
+		/*const person = users.find(pers => {
+			if (
+				person.pers === username &&
+				person.pers === password
+			) {
+				return navigate('/result');
+			}
+		}); */
+	};
+
+	const chechUser = async () => {
+		for (var i = 0; i < res.length; i++) {
+			console.log(i);
+		}
 	};
 	return (
 		<div className="Auth-form-container">
@@ -52,7 +81,7 @@ const Login = () => {
 							onClick={onsubmitHandel}
 							type="submit"
 							className="btn btn-primary">
-							Submit
+							login
 						</button>
 					</div>
 					<p className="forgot-password text-right mt-2">

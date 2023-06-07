@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { NewUser } from '../api/api.js';
+import { useNavigate } from 'react-router';
 
 const Sigup = () => {
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
 	const [telefon, setTelefone] = useState();
+	const navigate = useNavigate();
 	const onchangeUsername = e => {
 		const result1 = e.target.value;
 		setUsername(result1);
@@ -19,15 +22,29 @@ const Sigup = () => {
 		setTelefone(result3);
 		e.preventDefault();
 	};
+	useEffect(() => {
+		NewUser()
+			.then(data => {
+				return data;
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}, []);
 
-	const setToDb = {
-		username,
-		password,
-		telefon,
-	};
-	const onsubmitHandel = e => {
+	const onsubmitHandel = async e => {
 		e.preventDefault();
-		console.log(setToDb);
+		const setToDb = {
+			username,
+			password,
+			telefon,
+		};
+		const res = await NewUser(setToDb);
+		navigate('/login');
+		console.log(res);
+		setUsername('');
+		setPassword('');
+		setTelefone('');
 	};
 
 	return (
