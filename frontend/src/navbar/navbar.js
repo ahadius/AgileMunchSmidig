@@ -56,12 +56,14 @@ const Header = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ms-auto">
-                    <Nav.Link as={Link} to="/board">Plays</Nav.Link>
-                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                    <Nav.Link as={Link} to="/login" style={{fontSize:30, fontFamily: "impact"}}>Login</Nav.Link>
+					<Nav.Link as={Link} to="/result" style={{fontSize:30, fontFamily: "impact"}}>Art gallery</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
 	);
 };
+
+
 //test dette funker kanskje
 export default Header;
