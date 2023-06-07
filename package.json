@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "server": "node server/server.js",
-    "start": "node server/server.js",
+    "server": "node backend/roomserver/roomserver.js",
+    "start": "node backend/roomserver/roomserver.js",
     "client": "npm start --prefix client",
     "room": "concurrently \"npm run server\" \"npm run client\"",
     "install-backend": "npm install --prefix backend",
