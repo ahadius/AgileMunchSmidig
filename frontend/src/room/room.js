@@ -4,13 +4,15 @@ import DrawingBoard from '../BoardAssets/board'; // Update this path to the corr
 
 const ENDPOINT = 'http://localhost:3001';
 
+let socket; // Declare socket outside of function
+
 function Room() {
   const [clicked, setClicked] = useState(false);
   const [roomKey, setRoomKey] = useState('');
   const [joinKey, setJoinKey] = useState('');
 
   const handleMultiplayerClick = () => {
-    const socket = socketIOClient(ENDPOINT);
+    socket = socketIOClient(ENDPOINT);
     socket.on('newRoom', data => {
       setRoomKey(data);
     });
@@ -19,7 +21,7 @@ function Room() {
   };
 
   const handleJoinRoom = () => {
-    const socket = socketIOClient(ENDPOINT);
+    socket = socketIOClient(ENDPOINT);
     socket.emit('joinRoom', joinKey);
     setClicked(true);
   };
@@ -55,3 +57,4 @@ function Room() {
 }
 
 export default Room;
+export { socket }; // Export socket
