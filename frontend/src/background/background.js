@@ -1,5 +1,4 @@
 
-import '../App.css';
 import './background.css'
 import React, {useEffect, useState} from 'react';
 
@@ -28,21 +27,6 @@ import LOGO20 from './images/image20.jpg'
 
 
 function App() {
- /* useEffect(() => {
-    const images = document.querySelectorAll('.animated-image');
-
-    let index = 0;
-    const animateImages = () => {
-      images[index].classList.add('animate');
-      index = (index + 1) % images.length;
-    };
-
-    const interval = setInterval(animateImages, 1000); // Juster hastigheten etter behov
-
-    return () => clearInterval(interval);
-  }, []);*/
-
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
