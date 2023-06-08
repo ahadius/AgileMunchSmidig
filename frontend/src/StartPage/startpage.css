@@ -1,280 +1,335 @@
-.Main {
-    text-align: center;
-      height: 100vh;
-      
+/*.Main {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 10%;
+  height: 40vh;
+  background-color: rgb(214, 201, 100);
+  border-radius: 70px;
+  border: 2px solid black;
+  padding: 2%;
+}
+
+.button1, .button2 {
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 70px;
+  width: 40%;
+  height: 45%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.button1{
+  background-image: url("brush.jpg");
+
+}
+
+.button2{
+  background-image: url("multiplebrushes.png");
+}
+
+.button1-title, .button2-title {
+  position: absolute;
+  top: -10%;
+  font-style: italic;
+  font-size: 1.6em;
+  font-weight: 1000;
+}
+
+.button1-title{
+  left: 15%;
+}
+
+.button2-title{
+  right: 15%;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    height: 60vh;
   }
-  .container{
+
+  .button1, .button2 {
+    width: 80%;
+    height: 40%;
+  }
+
+  .button1-title, .button2-title {
     position: relative;
-  
-    display: flex;
-      justify-content: center;
-      align-items: center;
-    width: 45%;
-    height: 50%;
-    background-color: pink;
-    border-radius: 20px;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    margin: auto;
-  
-  
+    top: 0;
+    font-size: 2.5vw;
   }
-  .button1{
-    cursor: pointer; 
-    position: absolute;
-    background-color: white;
-    margin-bottom: 0%;
-    margin-right:45%;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    border-radius: 20px;
-    width: 27%;
-    height: 33%;
-    background-image: url("brush.jpg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-  }
-  
-  .button2{
-    cursor: pointer; 
-    position: absolute;
-    background-color: white;
-    margin-left: 45%;
-    margin-bottom: 0%;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    border-radius: 20px;
-    width: 27%;
-    height: 33%;
-    background-image: url("multiplebrushes.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-  }
+
   .button1-title{
-    position: absolute;
-  
-   margin-bottom: 35%;
-   margin-right:45%;
-   font-style: italic;
-   font-size: 190%;
-   font-weight: 1000;
-  
-  
-  
+    order: 1;
   }
+
   .button2-title{
-    position: absolute;
-  
-    margin-bottom: 35%;
-    margin-left:45%;
-    font-style: italic;
-    font-size: 190%;
-    font-weight: 1000;
-   
-   
-   
-   }
-  
-  
-  .container.clicked .button1,
-  .container.clicked .button2,
-  .container.clicked .button1-title,
-  .container.clicked .button2-title {
-    animation: hide 2s forwards;
+    order: 3;
   }
-  
-  @keyframes hide {
-    to {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-  
-  .container.clicked .button1-title {
-    animation-name: moveTitle;
-  }
-  
-  @keyframes moveTitle {
-    to {
-      transform: translateX(60%);
-    }
-  }
-  
-  .new-button1{
-    font-family: Arial, sans-serif;  
-    font-size: 20px;  
-    text-align: center;  
-    text-decoration:  none;
-    display: inline-block;
-    font-weight: bold; 
-    transition-duration: 0.4s; 
-    cursor: pointer; 
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: white;
-    margin-left: 65%;
-    margin-bottom: 0%;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    border-radius: 20px;
-    width: 25%;
-    height: 33%;
-  }
-  .new-button2{
-    font-family: Arial, sans-serif;  
-    font-size: 20px;  
-    text-align: center;  
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold; 
-    transition-duration: 0.4s; 
-    cursor: pointer; 
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: white;
-    margin-left: 0%;
-    margin-bottom: 0%;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    border-radius: 20px;
-    width: 25%;
-    height: 33%;
-  }
-  .new-button3 {
-    font-family: Arial, sans-serif;  
-    font-size: 20px;  
-    text-align: center;  
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;  
-    transition-duration: 0.4s; 
-    cursor: pointer; 
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    background-color: white;
-    margin-right: 65%;
-    margin-bottom: 0%;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    border-radius: 20px;
-    width: 25%;
-    height: 33%;
-    
-  }
-  
-  .container.clicked .new-button1,
-  .container.clicked .new-button2,
-  .container.clicked .new-button3 {
-    animation: show 2s forwards;
-  }
-  
-  @keyframes show {
-    to {
-      visibility: visible;
-      opacity: 1;
-    }
-    
-  }
-  .tooltip {
-    position: absolute;
-    bottom: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    white-space: nowrap;
-    font-size: 14px;
-    z-index: 100;
-  }
-  
-  .start-button {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px;
-    background-color: white;
-    color: black;
-    border-color: black;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .selectedGameMode {
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    margin-top:10%;
-    border-color: black;
-    border-style: solid;
-  
-  }
-  .selectedGameMode {
-    position: absolute;
-    background: rgb(236, 228, 228);
-    border-radius: 10px;
-    color: black;
-    padding: 50px;
-    text-align: center;
-    width: 10%; 
-    font-size: 16px; 
-    margin-right: 62%;
-    margin-bottom: 10%;
-  }
-  
-  .back-button {
-   /* font-family: Arial, sans-serif;
-    font-size: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    
-    background-image: url("undo-back-return-button-png-3.png");
-    background-size:contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: whitesmoke;
-    margin-bottom: 40%; 
-    margin-left: 80%;
-    border-color: black;
-    border-width: 2px;
-    border-style:solid;
-    border-radius: 20px;
-    width: 10%;
-    height: 15%;
-  }
-  
-  .container.clicked .back-button {
-    animation: show 2s forwards;
-  }
-  
+}*/
+/*-------------------------------------------
 
-  /*biston css */
+.Main {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  
+.container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 60vh;
+  background-color: rgb(214, 201, 100);
+  border-radius: 70px;
+  border: 2px solid black;
+  padding: 2%;
+}
+
+.button1, .button2 {
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 70px;
+  width: 100%;
+  height: 45%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.button1{
+  background-image: url("brush.jpg");
+}
+
+.button2{
+  background-image: url("multiplebrushes.png");
+}
+
+.button1-title, .button2-title {
+  font-style: italic;
+  font-size: 1.6em;
+  font-weight: 1000;
+}
+
+@media (max-width: 600px) {
+  .container{
+    width: 90%;
+    height: 80vh;
+  }
+
+  .button1, .button2 {
+    height: 40%;
+  }
+
+  .button1-title, .button2-title {
+    font-size: 1.2em;
+  }
+}
+
+.App{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.App img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: slide-images 20s infinite linear;
+}
+
+@keyframes slide-images {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  17% { opacity: 1; }
+  25% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.animated-image:nth-child(4n+1) { animation-delay: 0s; }
+.animated-image:nth-child(4n+2) { animation-delay: 5s; }
+.animated-image:nth-child(4n+3) { animation-delay: 10s; }
+.animated-image:nth-child(4n+4) { animation-delay: 15s; }*/
+
+body{
+  background-color: black;
+}
+.Main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.background-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.background-images img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: slide-images 20s infinite linear;
+}
+
+
+
+.container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 60vh;
+  background-color: rgba(141, 68, 137, 0); 
+  border-radius: 70px;
+  border: 2px solid rgba(0, 0, 0, 0);
+  padding: 2%;
+  z-index: 1; 
+  opacity: 50;
+}
+
+.button1, .button2 {
+  cursor: pointer; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+  border-radius: 20px;
+  width: 30%;
+  height: 22%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.button1{
+  background-image: url("brush.jpg");
+}
+
+.button2{
+  background-image: url("multiplebrushes.png");
+}
+
+.button1-title, .button2-title {
+  font-style: italic;
+  font-size: 3em;
+  font-weight: 800;
+  color: #00ff08;
+  animation: color-animation 10s infinite linear;
+  transition-timing-function: linear;
+}
+
+@keyframes color-animation {
+  0% { color: #00ff08; } /* Startfarge */
+  20% { color: #0589f6; } /* Mellomfarge 1 */
+  40% { color: #0b7fde; } /* Mellomfarge 2 */
+  60% { color: #0000ff; } /* Mellomfarge 3 */
+  80% { color: #01ffd0; } /* Mellomfarge 4 */
+  100% { color: #01ff6f; } /* Sluttfarge */
+}
+
+
+
+
+
+@media (max-width: 600px) {
+  .container{
+    width: 90%;
+    height: 80vh;
+  }
+
+  .button1, .button2 {
+    height: 40%;
+  }
+
+  .button1-title, .button2-title {
+    font-size: 1.2em;
+  }
+}
+
+.App {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.App img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: slide-images 20s infinite linear;
+  animation-delay: -5s;
+}
+
+.animated-image {
+  opacity: 0;
+  transform: translateX(-100%); 
+  transform: rotate(100%);             
+  transition: opacity 5s ease-out, transform 5s ease-out;
+  animation: slide-images 10s infinite linear;
+}
+
+
+.animated-image.animate {
+  opacity: 2;
+  transform: translateX(0);
+}
+
+
+
+
+

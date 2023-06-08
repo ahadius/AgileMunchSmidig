@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { socket } from "../room/room.js"; // Import the socket from your main App component
 
 const DrawingBoard = ({ username }) => {
     const canvasRef = useRef(null);
@@ -227,7 +226,7 @@ const DrawingBoard = ({ username }) => {
             <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
                 <button onClick={undo}>Angre</button>
                 <button onClick={clearCanvas}>Rens Canvas</button>
-                <Link to="/result"><button>submit</button></Link>
+                <Link to="/result"><button>Submit</button></Link>
             </div>
             <canvas ref={canvasRef} style={{ border: '1px solid black', margin: '0 auto', width: '80vw', height: '80vh' }} />
         </div>
