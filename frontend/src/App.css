@@ -1,5 +1,10 @@
+body{
+  background-color: brown;
+}
+
+
 .App {
-    background-color: white;
+    background-color: rgb(239, 237, 237);
   }
   
   .Auth-form-container {
