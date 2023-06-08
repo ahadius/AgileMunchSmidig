@@ -154,7 +154,7 @@ function App() {
   };
 
   const goToMultiplayer = () => {
-    navigate('/multi');
+    navigate('/room');
   };
 
   return (

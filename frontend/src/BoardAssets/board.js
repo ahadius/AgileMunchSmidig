@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { socket } from "../room/room.js"; // Import the socket from your main App component
+
 
 const DrawingBoard = ({ username }) => {
     const canvasRef = useRef(null);

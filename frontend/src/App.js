@@ -9,6 +9,7 @@ import Sigup from './form/signup.js';
 import Login from './form/login.js';
 import Result from './DrewingStore/result.js';
 import Startpage from './StartPage/startpage.js';
+import Room from './room/room.js'
 
 function App() {
 	return (
