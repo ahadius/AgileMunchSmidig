@@ -5,7 +5,7 @@ const secret = process.env.secret;
 
 const GenerateToken = _id => {
 	return jwt.sign({ _id, isAdmin: User.isAdmin }, secret, {
-		expiresIn: '10d',
+		expiresIn: '30d',
 	});
 };
 

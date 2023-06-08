@@ -41,7 +41,7 @@ const Login = () => {
 			JSON.stringify(res)
 		);
 		localStorage.setItem('token', res.token);
-		dispatch({ type: loggin, payload: res });
+		dispatch({ type: loggin, payload: u });
 		setEmail('');
 		setPassword('');
 		navigate('/result');

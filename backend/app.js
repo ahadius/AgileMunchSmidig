@@ -24,7 +24,7 @@ app.use(morgan('combined'));
 //app.use('/products', productRouter);
 //app.use('/rating', ratingRouter);
 app.use('/users', signupRouters);
-app.use('/ogin', loginRouters);
+app.use('/login', loginRouters);
 
 app.get('/*', (req, res) => {
 	res.sendFile(

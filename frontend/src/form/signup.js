@@ -49,7 +49,7 @@ const Sigup = () => {
 		setName('');
 		setEmail('');
 		setPassword('');
-		navigate('/board');
+		navigate('/login');
 	};
 
 	return (
