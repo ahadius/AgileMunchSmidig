@@ -6,8 +6,8 @@ const path = require('path');
 //manger roles
 const productRouter = require('./routers/productRouter.js');
 const ratingRouter = require('./routers/RatingRouter.js');
-const userRouter = require('./routers/userRouter.js');
-const loginRouter = require('./routers/loginRouter.js');
+const signupRouters = require('./routers/userRouter.js');
+const loginRouters = require('./routers/loginRouter.js');
 
 const app = express();
 app.use(cors());
@@ -23,8 +23,8 @@ app.use(
 app.use(morgan('combined'));
 //app.use('/products', productRouter);
 //app.use('/rating', ratingRouter);
-app.use('/users', userRouter);
-app.use('/login', loginRouter);
+app.use('/users', signupRouters);
+app.use('/ogin', loginRouters);
 
 app.get('/*', (req, res) => {
 	res.sendFile(

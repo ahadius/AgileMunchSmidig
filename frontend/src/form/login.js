@@ -1,57 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
-import { userLogin } from '../api/api.js';
-import '../App.css';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { postLogin } from '../api/api.js';
+import { useNavigate } from 'react-router-dom';
+import { UseAuthUser } from '../userHooks/userAuth.js';
+import { loggin } from '../store/constansTypes/constantTypes.js';
 
 const Login = () => {
-	const [res, setRes] = useState([]);
-	const [username, setUsername] = useState();
+	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const navigate = useNavigate();
+	const { dispatch } = UseAuthUser();
 
-	const onchangeUsername = e => {
-		const result1 = e.target.value;
-		setUsername(result1);
-		e.preventDefault();
+	const onchangEmail = e => {
+		const result = e.target.value;
+		setEmail(result);
 	};
-	const onchangePassword = e => {
-		const result2 = e.target.value;
-		setPassword(result2);
-		e.preventDefault();
+	const onchangPassword = e => {
+		const result = e.target.value;
+		setPassword(result);
 	};
-
 	useEffect(() => {
-		userLogin()
+		postLogin()
 			.then(data => {
 				return data;
 			})
 			.catch(err => {
 				console.log(err);
 			});
-	}, [res]);
+	}, [dispatch]);
 
-	const onsubmitHandel = async e => {
+	const onSubmit = async e => {
 		e.preventDefault();
-		const setToDb = {
-			username,
+		const ob = {
+			email,
 			password,
 		};
-
-		let users = await userLogin(setToDb);
-		/*const person = users.find(pers => {
-			if (
-				person.pers === username &&
-				person.pers === password
-			) {
-				return navigate('/result');
-			}
-		}); */
-	};
-
-	const chechUser = async () => {
-		for (var i = 0; i < res.length; i++) {
-			console.log(i);
-		}
+		const res = await postLogin(ob);
+		let u = localStorage.setItem(
+			'user',
+			JSON.stringify(res)
+		);
+		localStorage.setItem('token', res.token);
+		dispatch({ type: loggin, payload: res });
+		setEmail('');
+		setPassword('');
+		navigate('/result');
 	};
 	return (
 		<div className="Auth-form-container">
@@ -61,7 +54,7 @@ const Login = () => {
 					<div className="form-group mt-3">
 						<label>Username</label>
 						<input
-							onChange={onchangeUsername}
+							onChange={onchangEmail}
 							type="username"
 							className="form-control mt-1"
 							placeholder="Username"
@@ -70,7 +63,7 @@ const Login = () => {
 					<div className="form-group mt-3">
 						<label>Password</label>
 						<input
-							onChange={onchangePassword}
+							onChange={onchangPassword}
 							type="password"
 							className="form-control mt-1"
 							placeholder="Enter password"
@@ -78,7 +71,7 @@ const Login = () => {
 					</div>
 					<div className="d-grid gap-2 mt-3">
 						<button
-							onClick={onsubmitHandel}
+							onClick={onSubmit}
 							type="submit"
 							className="btn btn-primary">
 							login

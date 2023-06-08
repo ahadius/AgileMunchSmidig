@@ -1,15 +1,29 @@
 const url = 'http://localhost:8000';
 
+export const PostDrowing = async ({ picture }) => {
+	try {
+		const res = await fetch(`${url}/drowing`, {
+			method: 'POST',
+			headers: { 'Content-type': 'application/json' },
+			body: JSON.stringify({ picture }),
+		});
+
+		return res.json();
+	} catch (error) {
+		console.log('noe har gått galt');
+	}
+};
+
 export const NewUser = async ({
-	username,
+	name,
+	email,
 	password,
-	telefon,
 }) => {
 	try {
 		const result = await fetch(`${url}/users`, {
 			method: 'POST',
 			headers: { 'Content-type': 'application/json' },
-			body: JSON.stringify({ username, password, telefon }),
+			body: JSON.stringify({ name, email, password }),
 		});
 		return result.json();
 	} catch (error) {
@@ -17,21 +31,19 @@ export const NewUser = async ({
 	}
 };
 
-export const userLogin = async () => {
-	const response = await fetch(`${url}/login`);
-	console.log(response);
-	const data = await response.json();
-	console.log(data);
-	return data;
+export const postLogin = async ({ email, password }) => {
+	try {
+		const result = await fetch(`${url}/login`, {
+			method: 'POST',
+			headers: { 'Content-type': 'application/json' },
+			body: JSON.stringify({ email, password }),
+		});
+		return result.json();
+	} catch (error) {
+		console.log('something went wrong in your login!');
+	}
 };
 
-export const DeleteData = id => {
-	fetch(`${url}/${id}`, {
-		method: 'DELETE',
-	}).then(data => {
-		return data;
-	});
-};
 export const GetData = async () => {
 	const response = await fetch(`${url}/dishes`, {
 		headers: {
@@ -43,21 +55,11 @@ export const GetData = async () => {
 	const data = await response.json();
 	return data;
 };
-/*export const PostProduct = async ({
-	name,
-	price,
-	text,
-}) => {
-	try {
-		const res = await fetch(`${url}/products`, {
-			method: 'POST',
-			headers: { 'Content-type': 'application/json' },
-			body: JSON.stringify({ name, price, text }),
-		});
 
-		return res.json();
-	} catch (error) {
-		console.log('noe har gått galt');
-	}
+export const DeleteData = id => {
+	fetch(`${url}/${id}`, {
+		method: 'DELETE',
+	}).then(data => {
+		return data;
+	});
 };
-*/

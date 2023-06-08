@@ -1,18 +1,20 @@
 const mongoose = require('mongoose');
 const sigupSchema = new mongoose.Schema(
 	{
-		username: {
+		name: {
 			type: String,
 			require: true,
+		},
+		email: {
+			type: String,
+			require: true,
+			unique: true,
 		},
 		password: {
 			type: String,
 			require: true,
 		},
-		telefon: {
-			type: Number,
-			require: true,
-		},
+		isAdmin: Boolean,
 	},
 	{ timestamps: true }
 );

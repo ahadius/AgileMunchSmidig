@@ -1,27 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import '../App.css';
+import { useState, useEffect } from 'react';
 import { NewUser } from '../api/api.js';
+import { UseAuthUser } from '../userHooks/userAuth.js';
 import { useNavigate } from 'react-router';
 
 const Sigup = () => {
-	const [username, setUsername] = useState();
+	const { dispatch } = UseAuthUser();
+	const [name, setName] = useState();
+	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
-	const [telefon, setTelefone] = useState();
 	const navigate = useNavigate();
-	const onchangeUsername = e => {
-		const result1 = e.target.value;
-		setUsername(result1);
-		e.preventDefault();
-	};
-	const onchangePassword = e => {
-		const result2 = e.target.value;
-		setPassword(result2);
-		e.preventDefault();
-	};
-	const onchangeTelefone = e => {
-		const result3 = e.target.value;
-		setTelefone(result3);
-		e.preventDefault();
-	};
+
 	useEffect(() => {
 		NewUser()
 			.then(data => {
@@ -30,21 +19,37 @@ const Sigup = () => {
 			.catch(err => {
 				console.log(err);
 			});
-	}, []);
+	}, [dispatch]);
 
-	const onsubmitHandel = async e => {
+	const onchangName = e => {
+		const result = e.target.value;
+		setName(result);
+	};
+
+	const onchangEmail = e => {
+		const result = e.target.value;
+		setEmail(result);
+	};
+	const onchangPassword = e => {
+		const result = e.target.value;
+		setPassword(result);
+	};
+
+	const onSubmit = async e => {
 		e.preventDefault();
-		const setToDb = {
-			username,
+		const userOb = {
+			name,
+			email,
 			password,
-			telefon,
 		};
-		const res = await NewUser(setToDb);
-		navigate('/login');
-		console.log(res);
-		setUsername('');
+
+		const result = await NewUser(userOb);
+		localStorage.setItem('user', JSON.stringify(result));
+		localStorage.setItem('token', result.token);
+		setName('');
+		setEmail('');
 		setPassword('');
-		setTelefone('');
+		navigate('/board');
 	};
 
 	return (
@@ -55,33 +60,33 @@ const Sigup = () => {
 					<div className="form-group mt-3">
 						<label>Username</label>
 						<input
-							onChange={onchangeUsername}
-							type="email"
+							onChange={onchangName}
+							type="username"
 							className="form-control mt-1"
 							placeholder="Username"
 						/>
 					</div>
 					<div className="form-group mt-3">
-						<label>Password</label>
+						<label>email</label>
 						<input
-							onChange={onchangePassword}
-							type="password"
+							onChange={onchangEmail}
+							type="email"
 							className="form-control mt-1"
 							placeholder="Enter password"
 						/>
 					</div>
 					<div className="form-group mt-3">
-						<label>telefon</label>
+						<label>password</label>
 						<input
-							onChange={onchangeTelefone}
-							type="number"
+							onChange={onchangPassword}
+							type="password"
 							className="form-control mt-1"
 							placeholder="Enter telefon"
 						/>
 					</div>
 					<div className="d-grid gap-2 mt-3">
 						<button
-							onClick={onsubmitHandel}
+							onClick={onSubmit}
 							type="submit"
 							className="btn btn-primary">
 							sign up
