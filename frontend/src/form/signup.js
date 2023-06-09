@@ -45,7 +45,7 @@ const Sigup = () => {
 
 		const result = await NewUser(userOb);
 		localStorage.setItem('user', JSON.stringify(result));
-		localStorage.setItem('token', result.token);
+
 		setName('');
 		setEmail('');
 		setPassword('');

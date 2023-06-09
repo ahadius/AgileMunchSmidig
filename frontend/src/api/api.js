@@ -1,11 +1,11 @@
 const url = 'http://localhost:8000';
 
-export const PostDrowing = async ({ picture }) => {
+export const PostDrowing = async picture => {
 	try {
-		const res = await fetch(`${url}/drowing`, {
+		const res = await fetch(`${url}/ploading`, {
 			method: 'POST',
 			headers: { 'Content-type': 'application/json' },
-			body: JSON.stringify({ picture }),
+			body: JSON.stringify(picture),
 		});
 
 		return res.json();
@@ -45,7 +45,7 @@ export const postLogin = async ({ email, password }) => {
 };
 
 export const GetData = async () => {
-	const response = await fetch(`${url}/dishes`, {
+	const response = await fetch(`${url}/ploading`, {
 		headers: {
 			Authorization:
 				`Bearer ` + localStorage.getItem('token'),

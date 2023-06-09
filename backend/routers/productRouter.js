@@ -1,13 +1,10 @@
 const express = require('express');
-const productRouter = express.Router();
-
 const {
-	getproduct,
-	saveProduct,
+	saveImage,
+	getImage,
 } = require('../controllers/productControllers.js');
-
-productRouter.get('/', getproduct);
-productRouter.post('/', saveProduct);
-module.exports = {
-	productRouter,
-};
+const { authUser } = require('../auth/auth.js');
+const productRouter = express.Router();
+productRouter.get('/', authUser, getImage);
+productRouter.post('/', upload.single('file'), saveImage);
+module.exports = productRouter;

@@ -8,7 +8,7 @@ import { loggin } from '../constansTypes/constantTypes.js';
 export const AuthContext = createContext();
 
 const initialState = {
-	user: null,
+	user: [],
 };
 
 export const UserContextProvider = ({ children }) => {
@@ -16,7 +16,14 @@ export const UserContextProvider = ({ children }) => {
 		UserReduser,
 		initialState
 	);
-
+	/*
+	useEffect(() => {
+		var users = JSON.parse(localStorage.getItem('user'));
+		if (!users) {
+			dispatch({ type: loggin, payload: users });
+		}
+	}, []);
+	*/
 	console.log('authoContext state is ', state);
 
 	return (

@@ -6,14 +6,14 @@ import { UseAuthUser } from '../userHooks/userAuth.js';
 import { loggin } from '../store/constansTypes/constantTypes.js';
 
 const Login = () => {
-	const [email, setEmail] = useState();
+	const [name, setName] = useState();
 	const [password, setPassword] = useState();
 	const navigate = useNavigate();
 	const { dispatch } = UseAuthUser();
 
 	const onchangEmail = e => {
 		const result = e.target.value;
-		setEmail(result);
+		setName(result);
 	};
 	const onchangPassword = e => {
 		const result = e.target.value;
@@ -32,7 +32,7 @@ const Login = () => {
 	const onSubmit = async e => {
 		e.preventDefault();
 		const ob = {
-			email,
+			name,
 			password,
 		};
 		const res = await postLogin(ob);
@@ -40,9 +40,9 @@ const Login = () => {
 			'user',
 			JSON.stringify(res)
 		);
-		localStorage.setItem('token', res.token);
+
 		dispatch({ type: loggin, payload: u });
-		setEmail('');
+		setName('');
 		setPassword('');
 		navigate('/result');
 	};
