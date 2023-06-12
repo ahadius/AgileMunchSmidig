@@ -1,10 +1,5 @@
-import {
-	createContext,
-	useReducer,
-	useEffect,
-} from 'react';
+import { createContext, useReducer } from 'react';
 import { UserReduser } from '../reducers/userReducer.js';
-import { loggin } from '../constansTypes/constantTypes.js';
 export const AuthContext = createContext();
 
 const initialState = {

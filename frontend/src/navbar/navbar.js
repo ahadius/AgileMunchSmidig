@@ -99,6 +99,7 @@ const Header = () => {
 					)}
 					{!user && (
 						<Nav.Link
+							onChange={onclickHandler}
 							as={Link}
 							to="/login"
 							style={{

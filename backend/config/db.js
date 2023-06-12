@@ -10,6 +10,7 @@ mongoose.connection.on('erro', err => {
 
 const mangoConnect = async () => {
 	mongoose.connect(MONGO_URL);
+
 	mongoose.set('strictQuery', true);
 };
 

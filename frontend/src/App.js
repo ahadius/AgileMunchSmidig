@@ -13,7 +13,6 @@ import Result from './form/result.js';
 import Startpage from './StartPage/startpage.js';
 import Room from './room/room.js';
 import UploadImage from './form/uploadImage.js';
-
 function App() {
 	const { user } = UseAuthUser();
 	return (
@@ -22,16 +21,16 @@ function App() {
 
 			<Routes>
 				<Route path="/" element={<Startpage />} />
-				<Route exact path="/signup" element={<Sigup />} />
-				<Route exact path="/result" element={<Result />} />
-				<Route exact path="/login" element={<Login />} />
 				<Route
 					exact
 					path="/board"
 					element={<DrawingArea />}
 				/>
+				<Route exact path="/signup" element={<Sigup />} />
+				<Route exact path="/result" element={<Result />} />
+				<Route exact path="/login" element={<Login />} />
 				<Route
-					path="/uploadImage"
+					path="/uploadinImage"
 					element={<UploadImage />}
 				/>
 				<Route exact path="/multi" element={<Multi />} />

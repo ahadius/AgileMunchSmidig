@@ -1,46 +1,21 @@
-const Product = require('../models/productModel.js');
-const multer = require('multer');
-const memoryStorage = multer.memoryStorage();
+const Image = require('../models/productModel.js');
 
-export const upload = multer({
-	storage: memoryStorage,
-});
-
-const saveImage = async (req, res, next) => {
+const saveImage = async (req, res) => {
+	const { base64 } = req.body;
+	console.log(base64);
 	try {
-		const { file } = req;
-		if (!file)
-			throw new ErrorHandler(400, 'Image is required');
-
-		const fileFormat = file.mimetype.split(' ')[1];
-		const { base64 } = Product(fileFormat, file.buffer);
-
-		const imageDetails = await uploadToCloudinary(
-			base64,
-			fileFormat
-		);
-
-		res.json({
-			status: 'success',
-			message: 'Upload successful',
-			data: imageDetails,
-		});
+		const imges = Image.create({ image: base64 });
+		res.json({ Status: imges });
 	} catch (error) {
-		next(
-			new ErrorHandler(
-				error.statusCode || 500,
-				error.message
-			)
-		);
+		res.json({ Status: 'error', error });
 	}
 };
 
 const getImage = async (req, res) => {
-	const json = await Product.find({}).sort({});
+	const json = await Image.find();
 	res.status(200).json(json);
 };
 module.exports = {
 	getImage,
 	saveImage,
-	upload,
 };

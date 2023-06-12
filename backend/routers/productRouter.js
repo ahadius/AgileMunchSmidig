@@ -3,8 +3,9 @@ const {
 	saveImage,
 	getImage,
 } = require('../controllers/productControllers.js');
-const { authUser } = require('../auth/auth.js');
+const { authUser } = require('../middelwares/auth.js');
+
 const productRouter = express.Router();
-productRouter.get('/', authUser, getImage);
-productRouter.post('/', upload.single('file'), saveImage);
+productRouter.get('/', getImage);
+productRouter.post('/', saveImage);
 module.exports = productRouter;

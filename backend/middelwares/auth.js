@@ -1,7 +1,7 @@
 const User = require('../models/usersModel.js');
 //const Admin = require('../data/');
 const jwt = require('jsonwebtoken');
-const secret = process.env.secret;
+const secret = 'esfsretertgttes';
 
 const authUser = async (req, res, next) => {
 	// verify user is authenticated
@@ -27,6 +27,7 @@ const authUser = async (req, res, next) => {
 			.json({ error: 'Request is not authorized' });
 	}
 };
+
 const authAdmin = async (req, res, next) => {
 	// verify user is authenticated
 	const { authorization } = req.headers;

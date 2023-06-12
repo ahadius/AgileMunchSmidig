@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { socket } from '../room/room.js'; // Import the socket from your main App component
-
+import UploadImage from '../form/uploadImage.js';
 const DrawingBoard = ({ username }) => {
 	const canvasRef = useRef(null);
 	const [drawing, setDrawing] = useState(false);
@@ -354,7 +354,6 @@ const DrawingBoard = ({ username }) => {
 					</select>
 				</label>
 			</div>
-
 			<div
 				style={{
 					display: 'flex',

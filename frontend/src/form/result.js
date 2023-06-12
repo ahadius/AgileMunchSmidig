@@ -1,48 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Col, Container } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import Rating from './rating.js';
+import { Container, Card, Row, Col } from 'react-bootstrap';
+
 import { GetData } from '../api/api.js';
 import { set_Image } from '../store/constansTypes/constantTypes.js';
 import { UseUploadContext } from '../userHooks/useUploadConwxt.js';
-import { UseAuthUser } from '../userHooks/userAuth.js';
+import ShareFB from '../form/shareFb.js';
+import ShareFb from '../form/shareFb.js';
+
 const Result = () => {
-	const { user } = UseAuthUser();
-	const { images, dispatch } = UseUploadContext();
+	const { img, dispatch } = UseUploadContext();
 
 	const getDataFromDash = async () => {
 		const data = await GetData();
+		dispatch({ type: set_Image, payload: data });
 		return data;
 	};
 	useEffect(() => {
 		getDataFromDash()
 			.then(data => {
-				let result = data;
-				dispatch({ type: set_Image, payload: result });
+				dispatch({ type: set_Image, payload: data });
 			})
 			.catch(err => {
 				console.log(err.message);
 			});
-	}, [dispatch, user]);
+	}, [dispatch, img]);
+
+	const styles = {
+		card: {
+			backgroundColor: '#B7E0F2',
+			borderRadius: 50,
+			padding: '3rem',
+		},
+		cardImage: {
+			objectFit: 'cover',
+			borderRadius: 55,
+		},
+	};
 
 	return (
-		<>
-			<Container>
-				<p>you drowing result</p>
-				<div
-					style={{
-						background: '#eeeff5',
-						height: '40vh',
-						marginTop: '10px',
-						width: '800px',
-					}}>
-					{images &&
-						images.map(p => (
-							<Card key={p._id}>
-								<Col>{p.image}</Col>
-							</Card>
+		<Container fluid>
+			<Card className="m-5 p-5 border-0 shadow">
+				<Container>
+					<Card.Title as="h1">Your images</Card.Title>
+					<Row>
+						{img.map(p => (
+							<Col>
+								<Card.Img
+									className="border border-success border border-5"
+									src={p.image}
+									height={100}
+									width={50}
+									border-radius={(50, 20)}
+								/>
+							</Col>
 						))}
-				</div>
-			</Container>
-		</>
+
+						<Card.Img style={styles.cardImage} />
+						<ShareFb />
+					</Row>
+				</Container>
+			</Card>
+		</Container>
 	);
 };
 
