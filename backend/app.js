@@ -5,7 +5,6 @@ const path = require('path');
 
 //manger roles
 const productRouter = require('./routers/productRouter.js');
-const ratingRouter = require('./routers/RatingRouter.js');
 const signupRouters = require('./routers/userRouter.js');
 const loginRouters = require('./routers/loginRouter.js');
 
@@ -21,7 +20,7 @@ app.use(
 app.use(express.json());
 app.use(express.static(path.join('public')));
 app.use(morgan('combined'));
-//app.use('/rating', ratingRouter);
+
 app.use('/uploading', productRouter);
 app.use('/users', signupRouters);
 app.use('/login', loginRouters);

@@ -1,52 +1,6 @@
-/*import React from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
-import { Card } from 'react-bootstrap';
-
-const Navbar = () => {
-	return (
-		<div>
-			<Card>hello</Card>
-			<div className="App">
-				<div className="nav-container">
-					<Link to="./" className="Munch">
-						MUNCH
-						<Link to="./board"></Link>
-					</Link>
-					<Link to="./multi">multiplayers</Link>
-					<Link to="./signup">signup</Link>
-					<Link to="./login">login</Link>
-				</div>
-
-				<div className="whiteBox"></div>
-			</div>
-		</div>
-	);
-};
-
-export default Navbar;*/
-
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import '../App.css';
 import { Navbar, Nav } from 'react-bootstrap';
-
-/*<div>
-			<Card>hello</Card>
-			<div className="App">
-				<div className="nav-container">
-					<Link to="./" className="Munch">
-						MUNCH
-						<Link to="./board"></Link>
-					</Link>
-					<Link to="./multi">multiplayers</Link>
-					<Link to="./signup">signup</Link>
-					<Link to="./login">login</Link>
-				</div>
-
-				<div className="whiteBox"></div>
-			</div>
-		</div>*/
 
 import { Link } from 'react-router-dom';
 import { UseAuthUser } from '../userHooks/userAuth.js';
@@ -83,6 +37,7 @@ const Header = () => {
 				className="mx-3">
 				MUNCH
 			</Navbar.Brand>
+
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="ms-auto">
@@ -97,6 +52,7 @@ const Header = () => {
 							Login
 						</Nav.Link>
 					)}
+
 					{!user && (
 						<Nav.Link
 							onChange={onclickHandler}
@@ -126,5 +82,4 @@ const Header = () => {
 	);
 };
 
-//test dette funker kanskje
 export default Header;

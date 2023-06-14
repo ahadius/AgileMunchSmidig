@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Container,
 	Card,
@@ -6,14 +6,17 @@ import {
 	Col,
 	Image,
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { GetData } from '../api/api.js';
 import { set_Image } from '../store/constansTypes/constantTypes.js';
 import { UseUploadContext } from '../userHooks/useUploadConwxt.js';
 import Share from './shareFb.js';
+import { useParams } from 'react-router';
 
-const Result = () => {
+const Details = () => {
 	const { img, dispatch } = UseUploadContext();
+	const params = useParams();
+	const currentUrl = window.location.href;
+	console.log(currentUrl);
 
 	const getDataFromDash = async () => {
 		const data = await GetData();
@@ -38,32 +41,24 @@ const Result = () => {
 		},
 		cardImage: {
 			objectFit: 'cover',
-			borderRadius: 50,
+			borderRadius: 55,
 		},
 	};
 
 	return (
 		<Container fluid>
-			<Card.Title as="h1">Your images</Card.Title>
-
-			<Row>
-				{img.map(p => (
-					<Col key={p._id}>
-						<Link to={`/Details/:id ${p._id}`}>
-							<Image
-								className="border border-success border border-3"
-								src={p.image}
-								height={200}
-								border-radius={(10, 10)}
-							/>
-						</Link>
+			<Card.Title as="h1">Your image Details</Card.Title>
+			{img.map(p => (
+				<Row key={p._id}>
+					<Col>
+						<Card.Img src={p.image} />
 					</Col>
-				))}
-
-				<Card.Img style={styles.cardImage} />
-			</Row>
+					<Share description={currentUrl} />
+				</Row>
+			))}
+			<Card.Img style={styles.cardImage} />
 		</Container>
 	);
 };
 
-export default Result;
+export default Details;

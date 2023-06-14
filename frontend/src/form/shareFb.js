@@ -1,29 +1,23 @@
 import React from 'react';
-import { Button, Container } from 'react-bootstrap';
-import {
-	TwitterShareButton,
-	TwitterIcon,
-} from 'react-share';
 import {
 	FacebookShareButton,
 	FacebookIcon,
 } from 'react-share';
-import Result from '../form/result.js';
 
-function shareFb() {
+const Share = ({ description }) => {
+	const url = description;
+
 	return (
-		<Container className="ml-3">
+		<div>
 			<FacebookShareButton
-				url={'http://localhost:3000/'}
-				hashtag="hello1">
-				<i class="fa fa-share" className="pl-5"></i> share
-				<FacebookIcon size={15} round />
-				<TwitterShareButton url={'http://localhost:3000/'}>
-					<TwitterIcon size={15} round />
-				</TwitterShareButton>
+				url={url}
+				quote={'Munch museum!'}>
+				{' '}
+				Share
+				<FacebookIcon size={32} round />
 			</FacebookShareButton>
-		</Container>
+		</div>
 	);
-}
+};
 
-export default shareFb;
+export default Share;

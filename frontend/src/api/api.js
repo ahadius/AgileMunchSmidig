@@ -47,13 +47,7 @@ export const postLogin = async ({ email, password }) => {
 };
 
 export const GetData = async () => {
-	const response = await fetch(`${url}/uploading`, {
-		headers: {
-			Authorization:
-				`Bearer ` + localStorage.getItem('token'),
-		},
-	});
-
+	const response = await fetch(`${url}/uploading`);
 	const data = await response.json();
 	return data;
 };
