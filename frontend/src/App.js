@@ -21,6 +21,7 @@ function App() {
 			<Navbar />
 
 			<Routes>
+				<Route path="/" element={<UploadImage />} />
 				<Route path="/" element={<Startpage />} />
 				<Route
 					exact
@@ -35,10 +36,6 @@ function App() {
 				<Route exact path="/signup" element={<Sigup />} />
 				<Route exact path="/result" element={<Result />} />
 				<Route exact path="/login" element={<Login />} />
-				<Route
-					path="/uploadinImage"
-					element={<UploadImage />}
-				/>
 				<Route exact path="/multi" element={<Multi />} />
 				<Route
 					path="/login"

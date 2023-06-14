@@ -4,6 +4,7 @@ import { Card, Col, Container, Row } from 'react-bootstrap';
 import { UseUploadContext } from '../userHooks/useUploadConwxt.js';
 import { create_Image } from '../store/constansTypes/constantTypes.js';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 const UploadImage = () => {
 	const { dispatch } = UseUploadContext();
 	const [image, setImage] = useState('');
@@ -44,14 +45,12 @@ const UploadImage = () => {
 	return (
 		<Container>
 			<Row>
+				<h6>let´s us upload the images</h6>
 				<Card
 					style={{
-						width: '500px',
-						height: '500px',
-						border: '2px',
-						background: 'grey',
+						display: 'flex',
+						justifyContent: 'center',
 					}}>
-					<h3>let´s us upload the images</h3>
 					<Col>
 						<input
 							accept="image/*"
@@ -60,9 +59,11 @@ const UploadImage = () => {
 							onChange={changeValue}
 						/>
 					</Col>
-					<button onClick={onsubmitHandle}>
-						share your galley
-					</button>
+					<Button
+						onClick={onsubmitHandle}
+						variant="outline-primary">
+						Add to galley
+					</Button>
 				</Card>
 			</Row>
 			{image === '' || image === null ? '' : null}

@@ -51,7 +51,11 @@ const Details = () => {
 			{img.map(p => (
 				<Row key={p._id}>
 					<Col>
-						<Card.Img src={p.image} />
+						<Card.Img
+							src={p.image}
+							width={20}
+							height={100}
+						/>
 					</Col>
 					<Share description={currentUrl} />
 				</Row>

@@ -50,11 +50,9 @@ const Result = () => {
 				{img.map(p => (
 					<Col key={p._id}>
 						<Link to={`/Details/:id ${p._id}`}>
-							<Image
+							<Card.Img
 								className="border border-success border border-3"
 								src={p.image}
-								height={200}
-								border-radius={(10, 10)}
 							/>
 						</Link>
 					</Col>
