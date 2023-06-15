@@ -308,7 +308,7 @@ const DrawingBoard = ({ username }) => {
                 </label>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-                <button onClick={() => { setSize('25'); setColor('#FFFFFF'); }}> Slett Tegning</button>
+                <button onClick={() => { setSize('30'); setColor('#FFFFFF'); }}> viskelære</button>
                 <button onClick={clearCanvas}>Rens Canvas</button>
             </div>
             <canvas ref={canvasRef} style={{ border: '1px solid black', margin: '0 auto', width: '80vw', height: '80vh' }} />
