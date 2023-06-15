@@ -44,7 +44,7 @@ const Result = () => {
 
 	return (
 		<Container fluid>
-			<Card.Title as="h1">Your images</Card.Title>
+			<Card.Title style={{fontFamily: "impact"}} as="h1">Galleri senter</Card.Title>
 
 			<Row>
 				{img.map(p => (

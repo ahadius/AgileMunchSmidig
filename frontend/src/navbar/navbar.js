@@ -35,9 +35,19 @@ const Header = () => {
 				as={Link}
 				to="/"
 				className="mx-3">
-				MUNCH DRAW
+				MUNCH
 			</Navbar.Brand>
-			
+			<Navbar.Brand
+				style={{
+					fontFamily: 'impact',
+					color: 'white',
+					fontSize: 50,
+				}}
+				as={Link}
+				to="/"
+				className="mx-3">
+				DRAW
+			</Navbar.Brand>
 
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Collapse id="responsive-navbar-nav">
@@ -49,6 +59,7 @@ const Header = () => {
 							style={{
 								fontSize: 30,
 								fontFamily: 'impact',
+								color: "white",
 							}}>
 							Login
 						</Nav.Link>
@@ -73,8 +84,9 @@ const Header = () => {
 							style={{
 								fontSize: 30,
 								fontFamily: 'impact',
+								color: "white",
 							}}>
-							Art gallery
+							Kunst Galleri
 						</Nav.Link>
 					)}
 				</Nav>

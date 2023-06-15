@@ -440,7 +440,7 @@ const DrawingBoard = ({ username }) => {
    
                 <label style={{fontFamily:"impact"}}>
                     Penselstørrelse
-                    <input type="number" min="1" max="50" value={size} onChange={(e) => setSize(e.target.value)} />
+                    <input type="number" min="1" max="30" value={size} onChange={(e) => setSize(e.target.value)} />
                 </label>
    
                 <label style={{fontFamily:"impact"}}>
