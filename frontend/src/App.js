@@ -15,13 +15,13 @@ import Room from './room/room.js';
 import UploadImage from './form/uploadImage.js';
 import Details from './form/Details.js';
 function App() {
+	//<Route path="/" element={<UploadImage />} />
 	const { user } = UseAuthUser();
 	return (
 		<div>
 			<Navbar />
 
 			<Routes>
-				<Route path="/" element={<UploadImage />} />
 				<Route path="/" element={<Startpage />} />
 				<Route
 					exact

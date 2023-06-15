@@ -44,7 +44,7 @@ const Login = () => {
 		dispatch({ type: loggin, payload: u });
 		setName('');
 		setPassword('');
-		navigate('/result');
+		//navigate('/Details');
 	};
 	return (
 		<div className="Auth-form-container">

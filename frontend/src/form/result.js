@@ -49,12 +49,16 @@ const Result = () => {
 			<Row>
 				{img.map(p => (
 					<Col key={p._id}>
-						<Link to={`/Details/:id ${p._id}`}>
-							<Card.Img
-								className="border border-success border border-3"
-								src={p.image}
-							/>
-						</Link>
+						<Container>
+							<Link to={`/Details/${p._id}`}>
+								<img
+									className="border border-success border border-5"
+									src={p.image}
+									width={300}
+									height={250}
+								/>
+							</Link>
+						</Container>
 					</Col>
 				))}
 

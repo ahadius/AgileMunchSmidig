@@ -9,5 +9,9 @@ const { authUser } = require('../middelwares/auth.js');
 const productRouter = express.Router();
 productRouter.get('/', getImage);
 productRouter.post('/', saveImage);
-productRouter.get('/:id', productRouter.get(getImageById));
+productRouter.get(
+	'/:id',
+	authUser,
+	productRouter.get(getImageById)
+);
 module.exports = productRouter;

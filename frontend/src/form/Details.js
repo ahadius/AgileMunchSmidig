@@ -17,6 +17,8 @@ const Details = () => {
 	const params = useParams();
 	const currentUrl = window.location.href;
 	console.log(currentUrl);
+	const currentImage = img.find(p => p._id === params.id);
+	console.log(currentImage);
 
 	const getDataFromDash = async () => {
 		const data = await GetData();
@@ -47,19 +49,21 @@ const Details = () => {
 
 	return (
 		<Container fluid>
-			<Card.Title as="h1">Your image Details</Card.Title>
-			{img.map(p => (
-				<Row key={p._id}>
+			<Row>
+				<Container>
+					<Card.Title as="h1">
+						Your image Details
+					</Card.Title>
 					<Col>
-						<Card.Img
-							src={p.image}
-							width={20}
-							height={100}
+						<Image
+							src={currentImage.image}
+							width={500}
+							height={300}
 						/>
+						<Share description={currentUrl} />
 					</Col>
-					<Share description={currentUrl} />
-				</Row>
-			))}
+				</Container>
+			</Row>
 			<Card.Img style={styles.cardImage} />
 		</Container>
 	);
