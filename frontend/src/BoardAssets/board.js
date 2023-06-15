@@ -429,22 +429,22 @@ const DrawingBoard = ({ username }) => {
     return (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: 'auto auto auto auto auto', gap: '1rem', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                <label>
-                    Børstetype:
+                <label style={{fontFamily:"impact"}}>
+                    Børstetype
                     <select value={brushType} onChange={(e) => setBrushType(e.target.value)}>
                         <option value="flat">Flat</option>
-                        <option value="round">Round</option>
-                        <option value="textured">Textured</option>
+                        <option value="round">Rund</option>
+                        <option value="textured">Teksturert</option>
                     </select>
                 </label>  
    
-                <label>
-                    Penselstørrelse:
+                <label style={{fontFamily:"impact"}}>
+                    Penselstørrelse
                     <input type="number" min="1" max="50" value={size} onChange={(e) => setSize(e.target.value)} />
                 </label>
    
-                <label>
-                    Tegneverktøy:
+                <label style={{fontFamily:"impact"}}>
+                    Tegneverktøy
                     <select value={tool} onChange={(e) => setTool(e.target.value)}>
                         <option value="pencil">Pensel</option>
                         <option value="line">Rett linje</option>
@@ -453,25 +453,25 @@ const DrawingBoard = ({ username }) => {
             </div>
            
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                <label>
-                    Fargepalett:
+                <label style={{fontFamily:"impact"}}>
+                    Fargepalett
                     {colorPalette.map((color, i) => (
                         <button
                             key={i}
-                            style={{ backgroundColor: color, width: '37px', height: '25px' }}
+                            style={{ backgroundColor: color, width: '37px', height: '25px',}}
                             onClick={() => setColor(color)}
                         />
                     ))}
                 </label>
    
-                <label>
-                    Penselfarge:
+                <label style={{fontFamily:"impact"}}>
+                    Penselfarge
                     <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
                 </label>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-                <button onClick={undo}>Angre</button>
-                <button onClick={clearCanvas}>Rens Canvas</button>
+                <button style={{backgroundColor: "black", color:"white", fontFamily:"impact", borderRadius:"5px", cursor:"pointer", padding:"5px 20px"}} onClick={undo}>Angre</button>
+                <button style={{backgroundColor: "black", color:"white", fontFamily:"impact", borderRadius:"5px", cursor:"pointer", padding:"5px 20px"}} onClick={clearCanvas}>Rens Canvas</button>
             </div>
             <canvas ref={canvasRef} style={{ border: '1px solid black', margin: '0 auto', width: '80vw', height: '80vh' }} />
 
