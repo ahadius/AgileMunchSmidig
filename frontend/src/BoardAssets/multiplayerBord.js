@@ -129,6 +129,7 @@ const DrawingBoard = ({ username }) => {
 		}
 		
 		const draw = (e) => {
+            e.preventDefault();
 			const rect = canvas.getBoundingClientRect();
 			const x = ('clientX' in e ? e.clientX : e.touches[0].clientX) - rect.left;
 			const y = ('clientY' in e ? e.clientY : e.touches[0].clientY) - rect.top;
@@ -192,6 +193,7 @@ const DrawingBoard = ({ username }) => {
     
 
         const startDrawing = (e) => {  // funksjoner for å bevege både musset og touch bevegelser
+            e.preventDefault();
             const rect = canvas.getBoundingClientRect();
     const x = ('clientX' in e ? e.clientX : e.touches[0].clientX) - rect.left;
     const y = ('clientY' in e ? e.clientY : e.touches[0].clientY) - rect.top;
@@ -212,15 +214,30 @@ const DrawingBoard = ({ username }) => {
 
         }
 
-        const endDrawing = () => {
+        /*const endDrawing = () => {
+            e.preventDefault();
             setDrawing(false);
             context.beginPath();
             setLineStart(null);
-           // saveToHistory();
             console.log('Sending drawing data to server', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size });
 
             socket.emit('drawing', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size, tool: tool, brushType: brushType });
 
+        }*/
+
+        const endDrawing = (e) => {
+            e.preventDefault();
+       
+            setDrawing(false);
+            context.beginPath();
+            setLineStart(null);
+           // saveToHistory();
+           /* console.log('Sending drawing data to server', { color: color, size: size });*/
+            console.log('Sending drawing data to server', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size });
+
+       
+            //socket && socket.emit('drawing', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size });
+       
         }
 
         
@@ -228,9 +245,9 @@ const DrawingBoard = ({ username }) => {
         canvas.addEventListener('mouseup', endDrawing);
         canvas.addEventListener('mousemove', draw);
         //canvas.addEventListener('click', fillArea);
-        canvas.addEventListener('touchstart', startDrawing);
-        canvas.addEventListener('touchend', endDrawing);
-        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchstart', startDrawing, {passive: false});
+        canvas.addEventListener('touchend', endDrawing, {passive: false});
+        canvas.addEventListener('touchmove', draw, {passive: false});
 
         return () => {
             window.removeEventListener('resize', resizeContext);
@@ -279,7 +296,7 @@ const DrawingBoard = ({ username }) => {
                     {colorPalette.map((color, i) => (
                         <button
                             key={i}
-                            style={{ backgroundColor: color, width: '40px', height: '25px' }}
+                            style={{ backgroundColor: color, width: '37px', height: '25px' }}
                             onClick={() => { setColor(color); setSize(normalSize); }}
                         />
                     ))}
