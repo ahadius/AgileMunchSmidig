@@ -1,9 +1,14 @@
-import { createContext, useReducer } from 'react';
+import {
+	createContext,
+	useReducer,
+	useEffect,
+} from 'react';
 import { UserReduser } from '../reducers/userReducer.js';
+import { loggin } from '../constansTypes/constantTypes.js';
 export const AuthContext = createContext();
 
 const initialState = {
-	user: [],
+	user: null,
 };
 
 export const UserContextProvider = ({ children }) => {
@@ -11,15 +16,14 @@ export const UserContextProvider = ({ children }) => {
 		UserReduser,
 		initialState
 	);
-	/*
+
+	console.log('authoContext state is ', state);
 	useEffect(() => {
-		var users = JSON.parse(localStorage.getItem('user'));
-		if (!users) {
+		const users = JSON.parse(localStorage.getItem('user'));
+		if (users) {
 			dispatch({ type: loggin, payload: users });
 		}
 	}, []);
-	*/
-	console.log('authoContext state is ', state);
 
 	return (
 		<AuthContext.Provider value={{ ...state, dispatch }}>

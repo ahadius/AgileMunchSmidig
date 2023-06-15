@@ -16,36 +16,6 @@ export const PostDrowing = async ({ image }) => {
 	}
 };
 
-export const NewUser = async ({
-	name,
-	email,
-	password,
-}) => {
-	try {
-		const result = await fetch(`${url}/users`, {
-			method: 'POST',
-			headers: { 'Content-type': 'application/json' },
-			body: JSON.stringify({ name, email, password }),
-		});
-		return result.json();
-	} catch (error) {
-		console.log('something went wrong in your code!!');
-	}
-};
-
-export const postLogin = async ({ email, password }) => {
-	try {
-		const result = await fetch(`${url}/login`, {
-			method: 'POST',
-			headers: { 'Content-type': 'application/json' },
-			body: JSON.stringify({ email, password }),
-		});
-		return result.json();
-	} catch (error) {
-		console.log('something went wrong in your login!');
-	}
-};
-
 export const GetData = async () => {
 	const response = await fetch(`${url}/uploading`);
 	const data = await response.json();

@@ -1,11 +1,16 @@
-import { UseAuthUser } from '../userHooks/userAuth.js';
+import { UseAuthUser } from './userAuth.js';
 import { logout } from '../store/constansTypes/constantTypes.js';
-export const UseLogout = () => {
+
+export const useLogout = () => {
 	const { dispatch } = UseAuthUser();
-	const LogFuc = () => {
+
+	const Logout = () => {
+		// remove user from storage
 		localStorage.removeItem('user');
-		localStorage.clear();
+
+		// dispatch logout action
 		dispatch({ type: logout });
 	};
-	return { LogFuc };
+
+	return { Logout };
 };

@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
 import { UseAuthUser } from '../userHooks/userAuth.js';
-import { UseLogout } from '../userHooks/userLoggut.js';
-import { useState } from 'react';
+import { useLogout } from '../userHooks/userLoggut.js';
 import { useNavigate } from 'react-router-dom';
 const Header = () => {
-	const [show] = useState(false);
 	const { user } = UseAuthUser();
-	const { LogFuc } = UseLogout();
+	console.log(user);
+	const { Logout } = useLogout();
 	const navigate = useNavigate();
 
 	const onclickHandler = () => {
-		LogFuc();
-		navigate('/signup');
+		Logout();
+		navigate('/');
 	};
 
 	return (
@@ -53,30 +52,41 @@ const Header = () => {
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="ms-auto">
 					{user && (
+						<div>
+							<Col
+								style={{
+									fontSize: 30,
+									fontFamily: 'impact',
+									color: 'white',
+								}}>
+								{user.email}
+							</Col>
+
+							<Nav.Link
+								onClick={onclickHandler}
+								style={{
+									fontSize: 30,
+									fontFamily: 'impact',
+									color: 'white',
+								}}>
+								logged out
+							</Nav.Link>
+						</div>
+					)}
+
+					{!user && (
 						<Nav.Link
 							as={Link}
 							to="/login"
 							style={{
 								fontSize: 30,
 								fontFamily: 'impact',
-								color: "white",
+								color: 'white',
 							}}>
 							Login
 						</Nav.Link>
 					)}
 
-					{!user && (
-						<Nav.Link
-							onChange={onclickHandler}
-							as={Link}
-							to="/login"
-							style={{
-								fontSize: 30,
-								fontFamily: 'impact',
-							}}>
-							Logget out
-						</Nav.Link>
-					)}
 					{user && (
 						<Nav.Link
 							as={Link}
@@ -84,7 +94,7 @@ const Header = () => {
 							style={{
 								fontSize: 30,
 								fontFamily: 'impact',
-								color: "white",
+								color: 'white',
 							}}>
 							Kunst Galleri
 						</Nav.Link>

@@ -1,4 +1,4 @@
-import { AuthContext } from '../store/actions/userAction.js';
+import { AuthContext } from '../store/actions/AuthContex.js';
 import { useContext } from 'react';
 export const UseAuthUser = () => {
 	const context = useContext(AuthContext);

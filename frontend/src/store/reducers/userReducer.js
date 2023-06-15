@@ -1,6 +1,6 @@
 import {
-	logout,
 	loggin,
+	logout,
 } from '../constansTypes/constantTypes.js';
 export const UserReduser = (state, action) => {
 	switch (action.type) {

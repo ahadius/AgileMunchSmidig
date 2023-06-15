@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const sigupSchema = new mongoose.Schema(
 	{
-		name: {
-			type: String,
-			require: true,
-		},
 		email: {
 			type: String,
 			require: true,
@@ -14,7 +10,6 @@ const sigupSchema = new mongoose.Schema(
 			type: String,
 			require: true,
 		},
-		isAdmin: Boolean,
 	},
 	{ timestamps: true }
 );
