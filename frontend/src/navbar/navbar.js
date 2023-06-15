@@ -52,12 +52,14 @@ const Header = () => {
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="ms-auto">
 					{user && (
-						<div>
+						<Nav className="ml-2">
 							<Col
 								style={{
 									fontSize: 30,
-									fontFamily: 'impact',
-									color: 'white',
+
+									color: 'blue',
+									marginRight: 30,
+									marginTop: 7,
 								}}>
 								{user.email}
 							</Col>
@@ -71,7 +73,7 @@ const Header = () => {
 								}}>
 								logged out
 							</Nav.Link>
-						</div>
+						</Nav>
 					)}
 
 					{!user && (

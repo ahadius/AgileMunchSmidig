@@ -10,6 +10,7 @@ const sigupSchema = new mongoose.Schema(
 			type: String,
 			require: true,
 		},
+		isAdmin: Boolean,
 	},
 	{ timestamps: true }
 );
