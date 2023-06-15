@@ -11,9 +11,10 @@ import Sigup from './form/signup.js';
 import Login from './form/login.js';
 import Result from './form/result.js';
 import Startpage from './StartPage/startpage.js';
-import Room from './room/room.js';
-import UploadImage from './form/uploadImage.js';
+//import Room from './room/room.js';
+//import UploadImage from './form/uploadImage.js';
 import Details from './form/Details.js';
+import Multiplayers from './BoardAssets/multiplayerBord';
 function App() {
 	//<Route path="/" element={<UploadImage />} />
 	const { user } = UseAuthUser();
@@ -23,6 +24,7 @@ function App() {
 
 			<Routes>
 				<Route path="/" element={<Startpage />} />
+				<Route path="/multiplayerBord" element={<Multiplayers />} />
 				<Route
 					exact
 					path="/Details/:id"

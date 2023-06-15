@@ -1,16 +1,19 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-
+import io from 'socket.io-client';
+console.log('Connected to server');
 
 const DrawingBoard = ({ username }) => {
     const canvasRef = useRef(null);
     const [drawing, setDrawing] = useState(false);
     const [color, setColor] = useState('#000000');
     const [size, setSize] = useState('2');
-    const [history, setHistory] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(-1);
     const [tool, setTool] = useState('pencil');
     const [lineStart, setLineStart] = useState(null);
     const [brushType, setBrushType] = useState('flat');
+    const [socket, setSocket] = useState(null);
+	const [normalSize, setNormalSize] = useState('4');
+
+
 
     const colorPalette = [
         '#000000', '#FFFFFF', '#808080', '#B22222', '#A52A2A', '#006400',
@@ -20,17 +23,64 @@ const DrawingBoard = ({ username }) => {
         '#FF00FF', '#1E90FF', '#ADD8E6', '#87CEEB', '#FFB6C1', '#FF69B4',
         '#FF1493',
     ];
-   
 
-    const saveToHistory = useCallback(() => {
+
+	
+
+
+    const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+    const [endPos, setEndPos] = useState({ x: 0, y: 0 });
+  
+    
+    const clearCanvas = useCallback(() => {
         const canvas = canvasRef.current;
-        const historyCopy = [...history];
-        historyCopy.push(canvas.toDataURL());
-        setHistory(historyCopy);
-        setCurrentIndex(historyCopy.length - 1);
-    }, [history, canvasRef]);
-    //const [filling, setFilling] = useState(false);
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+       
+        socket.emit('clear');
+    }, [socket]);
 
+
+    
+    useEffect(() => {
+        const newSocket = io.connect('http://localhost:3000');
+        setSocket(newSocket);
+        console.log('Connected to server');
+
+        return () => {
+            newSocket.disconnect();
+        };
+    }, []);
+
+
+        
+    useEffect(() => {
+        if (socket) {
+            socket.on('drawingData', data => {
+                const canvas = canvasRef.current;
+                const context = canvas.getContext('2d');
+                context.strokeStyle = data.color;
+                context.lineWidth = data.size;
+                context.lineJoin = 'round';
+                context.lineCap = 'round';
+                context.beginPath();
+                context.moveTo(data.fromX, data.fromY);
+                context.lineTo(data.toX, data.toY);
+                context.stroke();
+                context.beginPath();
+                context.moveTo(data.toX, data.toY);
+                
+        
+                socket.on('clear', () => {
+                    clearCanvas();
+                });
+
+
+            });
+
+        }
+    }, [socket, clearCanvas]);
+    
     
 
     
@@ -48,50 +98,97 @@ const DrawingBoard = ({ username }) => {
             context.canvas.height = canvas.clientHeight;
 
             context.putImageData(temp, 0, 0);
-
-
         }
+
+
 
     
         resizeContext();
         window.addEventListener('resize', resizeContext);
 
-        const draw = (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const x = ('clientX' in e ? e.clientX : e.touches[0].clientX) - rect.left;
-            const y = ('clientY' in e ? e.clientY : e.touches[0].clientY) - rect.top;
-            if (!drawing) return;
-            
-            context.lineWidth = size;
-            context.strokeStyle = color;
-    
-            if (brushType === 'round') {
-                context.lineJoin = 'round';
-                context.lineCap = 'round';
-            } else if (brushType === 'flat') {
-                context.lineJoin = 'bevel';
-                context.lineCap = 'square';
-            } else if (brushType === 'textured') {
-                context.lineJoin = 'round';
-                context.lineCap = 'butt';
-                context.lineWidth = size * (Math.round(Math.random()) ? 1 : 0.5);
-            }
-    
-            if (tool === 'pencil') {
-                context.lineTo(x, y);
-                context.stroke();
-                context.beginPath();
-                context.moveTo(x, y);
-            }
-            else if (tool === 'line' && lineStart) {
-                context.putImageData(lineStart.imageData, 0, 0);
-                context.beginPath();
-                context.moveTo(lineStart.x, lineStart.y);
-                context.lineTo(x, y);
-                context.stroke();
-            }
-            
-        }
+        
+       
+		const drawLine = (x1, y1, x2, y2) => {
+			const dx = x2 - x1;
+			const dy = y2 - y1;
+			const steps = Math.max(Math.abs(dx), Math.abs(dy));
+			const incX = dx / steps;
+			const incY = dy / steps;
+			let x = x1;
+			let y = y1;
+			
+			context.beginPath();
+			context.moveTo(x1, y1);
+			for(let i = 0; i <= steps; i++) {
+				context.lineTo(x, y);
+				context.stroke();
+				x += incX;
+				y += incY;
+			}
+			context.closePath();
+		}
+		
+		const draw = (e) => {
+			const rect = canvas.getBoundingClientRect();
+			const x = ('clientX' in e ? e.clientX : e.touches[0].clientX) - rect.left;
+			const y = ('clientY' in e ? e.clientY : e.touches[0].clientY) - rect.top;
+			if (!drawing) return;
+		
+			context.lineWidth = size;
+			context.strokeStyle = color;
+		
+			if (brushType === 'round') {
+				context.lineJoin = 'round';
+				context.lineCap = 'round';
+			} else if (brushType === 'flat') {
+				context.lineJoin = 'bevel';
+				context.lineCap = 'square';
+			} else if (brushType === 'textured') {
+				context.lineJoin = 'round';
+				context.lineCap = 'butt';
+				context.lineWidth = size * (Math.round(Math.random()) ? 1 : 0.5);
+			}
+		
+			if (tool === 'pencil') {
+				drawLine(startPos.x, startPos.y, x, y);
+			}
+			else if (tool === 'line' && lineStart) {
+				context.putImageData(lineStart.imageData, 0, 0);
+				context.beginPath();
+				context.moveTo(lineStart.x, lineStart.y);
+				context.lineTo(x, y);
+				context.stroke();
+			}
+		
+			socket.emit('drawing', {
+				fromX: startPos.x,
+				fromY: startPos.y,
+				toX: x,
+				toY: y,
+				color: color,
+				size: size,
+				tool: tool,
+				brushType: brushType,
+				lineStartX: lineStart ? lineStart.x : null,
+				lineStartY: lineStart ? lineStart.y : null
+			});
+		
+			setEndPos({ x, y });
+			socket.emit('drawing', {
+				fromX: startPos.x,
+				fromY: startPos.y,
+				toX: x,
+				toY: y,
+				color: color,
+				size: size,
+				tool: tool,
+				brushType: brushType
+			});
+			setStartPos({ x, y });
+		}
+		
+
+
     
 
         const startDrawing = (e) => {  // funksjoner for å bevege både musset og touch bevegelser
@@ -105,11 +202,13 @@ const DrawingBoard = ({ username }) => {
                     y: y,
                     imageData: context.getImageData(0, 0, canvas.width, canvas.height)
                 });
+                socket.emit('startLine', { lineStartX: x, lineStartY: y });
+
             }
 
             setDrawing(true);
             draw(e);
-            
+            setStartPos({ x, y });
 
         }
 
@@ -117,16 +216,14 @@ const DrawingBoard = ({ username }) => {
             setDrawing(false);
             context.beginPath();
             setLineStart(null);
-            saveToHistory();
-            console.log('Sending drawing data to server', { color: color, size: size });
+           // saveToHistory();
+            console.log('Sending drawing data to server', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size });
 
-            //socket && socket.emit('drawing', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size });
+            socket.emit('drawing', { fromX: startPos.x, fromY: startPos.y, toX: endPos.x, toY: endPos.y, color: color, size: size, tool: tool, brushType: brushType });
 
         }
 
-          
-
-
+        
         canvas.addEventListener('mousedown', startDrawing);
         canvas.addEventListener('mouseup', endDrawing);
         canvas.addEventListener('mousemove', draw);
@@ -148,35 +245,9 @@ const DrawingBoard = ({ username }) => {
 
 
         };
-    }, [drawing, color, size, tool, brushType,lineStart, saveToHistory]);
+    }, [drawing, color, size, tool, brushType, endPos.x, endPos.y, lineStart,  startPos.x,startPos.y, clearCanvas ]);
 
-   
-
-    const undo = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-            const image = new Image();
-            image.src = history[currentIndex - 1];
-            image.onload = () => {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                context.drawImage(image, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width, canvas.height);
-            };
-        }
-    }
-    
-
-    const clearCanvas = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        setHistory([]);
-        setCurrentIndex(-1);
-    }
-
-
-    return (
+	return (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: 'auto auto auto auto auto', gap: '1rem', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
                 <label>
@@ -187,10 +258,10 @@ const DrawingBoard = ({ username }) => {
                         <option value="textured">Textured</option>
                     </select>
                 </label>  
-    
+
                 <label>
                     Penselstørrelse:
-                    <input type="number" min="1" max="50" value={size} onChange={(e) => setSize(e.target.value)} />
+                    <input type="number" min="1" max="50" value={size} onChange={(e) => {setNormalSize(e.target.value); setSize(e.target.value);}} />
                 </label>
     
                 <label>
@@ -209,7 +280,7 @@ const DrawingBoard = ({ username }) => {
                         <button
                             key={i}
                             style={{ backgroundColor: color, width: '40px', height: '25px' }}
-                            onClick={() => setColor(color)}
+                            onClick={() => { setColor(color); setSize(normalSize); }}
                         />
                     ))}
                 </label>
@@ -220,16 +291,15 @@ const DrawingBoard = ({ username }) => {
                 </label>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-                <button onClick={undo}>Angre</button>
+                <button onClick={() => { setSize('25'); setColor('#FFFFFF'); }}> Slett Tegning</button>
                 <button onClick={clearCanvas}>Rens Canvas</button>
             </div>
             <canvas ref={canvasRef} style={{ border: '1px solid black', margin: '0 auto', width: '80vw', height: '80vh' }} />
-
         </div>
-    );   
+    );
     
   
     
 }
 
-export default DrawingBoard;
+export default DrawingBoard; 

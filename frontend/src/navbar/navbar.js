@@ -35,8 +35,9 @@ const Header = () => {
 				as={Link}
 				to="/"
 				className="mx-3">
-				MUNCH
+				MUNCH DRAW
 			</Navbar.Brand>
+			
 
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Collapse id="responsive-navbar-nav">

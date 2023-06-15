@@ -153,11 +153,11 @@ function App() {
 	}, [imagesLoaded, currentIndex]);
 
 	const goToSinglePlayer = () => {
-		navigate('/board');
+		navigate('./board');
 	};
 
 	const goToMultiplayer = () => {
-		navigate('/room');
+		navigate('./multiplayerBord');
 	};
 
 	return (
