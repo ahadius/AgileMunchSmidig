@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { useLogin } from '../userHooks/userLogin.js';
 import { redirect } from 'react-router';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -16,26 +17,30 @@ const Login = () => {
 	return (
 		<>
 			<Container>
-				<form style={{fontFamily:"impact"}} className="login" onSubmit={handleSubmit}>
+				<form className="" onSubmit={handleSubmit}>
 					<h3>Login</h3>
-
 					<label>Email address:</label>
 					<input
-						style={{borderRadius:"4px"}}
+						className="form-control"
 						type="email"
 						onChange={e => setEmail(e.target.value)}
 						value={email}
 					/>
 					<label>Passord:</label>
 					<input
-						style={{borderRadius:"4px"}}
 						type="password"
+						className="form-control"
 						onChange={e => setPassword(e.target.value)}
 						value={password}
 					/>
 
-					<button style={{borderRadius:"4px"}} disabled={isLoading}>Login</button>
+					<Button
+						className="d-grid m-2 btn btn-primary "
+						disabled={isLoading}>
+						Login
+					</Button>
 					{error && <div className="error">{error}</div>}
+					<Link to="/signup">sign up</Link>
 				</form>
 			</Container>
 		</>

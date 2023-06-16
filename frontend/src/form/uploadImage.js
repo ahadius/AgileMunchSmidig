@@ -50,6 +50,7 @@ const UploadImage = () => {
 					style={{
 						display: 'flex',
 						justifyContent: 'center',
+						marginBottom: 200,
 					}}>
 					<Col>
 						<input

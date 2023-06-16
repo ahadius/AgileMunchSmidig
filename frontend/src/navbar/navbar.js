@@ -57,7 +57,7 @@ const Header = () => {
 								style={{
 									fontSize: 30,
 
-									color: 'blue',
+									color: 'white',
 									marginRight: 30,
 									marginTop: 7,
 								}}>

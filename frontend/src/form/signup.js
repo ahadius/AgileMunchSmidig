@@ -16,7 +16,7 @@ const Signup = () => {
 	return (
 		<>
 			<Container>
-				<form className="signup" onSubmit={handleSubmit}>
+				<form className="" onSubmit={handleSubmit}>
 					<h3>Sign Up</h3>
 
 					<label>Email address:</label>
@@ -24,9 +24,11 @@ const Signup = () => {
 						type="email"
 						onChange={e => setEmail(e.target.value)}
 						value={email}
+						className="form-control"
 					/>
 					<label>Password:</label>
 					<input
+						className="form-control"
 						type="password"
 						onChange={e => setPassword(e.target.value)}
 						value={password}
