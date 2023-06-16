@@ -2,8 +2,7 @@ import { useState } from 'react';
 
 import { useLogin } from '../userHooks/userLogin.js';
 import { redirect } from 'react-router';
-import { Button, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -17,30 +16,24 @@ const Login = () => {
 	return (
 		<>
 			<Container>
-				<form className="" onSubmit={handleSubmit}>
-					<h3>Login</h3>
+				<form className="login" onSubmit={handleSubmit}>
+					<h3>Log In</h3>
+
 					<label>Email address:</label>
 					<input
-						className="form-control"
 						type="email"
 						onChange={e => setEmail(e.target.value)}
 						value={email}
 					/>
-					<label>Passord:</label>
+					<label>Password:</label>
 					<input
 						type="password"
-						className="form-control"
 						onChange={e => setPassword(e.target.value)}
 						value={password}
 					/>
 
-					<Button
-						className="d-grid m-2 btn btn-primary "
-						disabled={isLoading}>
-						Login
-					</Button>
+					<button disabled={isLoading}>Log in</button>
 					{error && <div className="error">{error}</div>}
-					<Link to="/signup">sign up</Link>
 				</form>
 			</Container>
 		</>
