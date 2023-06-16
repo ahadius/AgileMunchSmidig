@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLogin } from '../userHooks/userLogin.js';
 import { redirect } from 'react-router';
 import { Container, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -44,6 +45,7 @@ const Login = () => {
 						<button disabled={isLoading}>Log in</button>
 						{error && <div className="error">{error}</div>}
 					</Form.Group>
+					<Link to="/signup">sign up</Link>
 				</form>
 			</Container>
 		</>
